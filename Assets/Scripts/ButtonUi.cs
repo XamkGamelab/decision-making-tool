@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace JAS.MediDeci
 {
@@ -10,9 +11,22 @@ namespace JAS.MediDeci
         public float clickTime;
         public float resultTime;
 
+        public int RandomScene;
+
+
+        public TextMeshProUGUI resultText;
+
+        public GameObject AnswerButtonsVisible;
+        public GameObject BackToMenuButtonVisible;
+
+
         private void Start()
         {
             startTime = Time.time;
+            AnswerButtonsVisible.SetActive(true);
+            BackToMenuButtonVisible.SetActive(false);
+            RandomScene = Random.Range(1, 4); // T‰ss‰ on vain scenet 1-3
+            Debug.Log("Random scene: " + RandomScene);
         }
 
         // T‰m‰ on vain ajan testailua varten, poistetaan varmaan lopuksi
@@ -23,14 +37,18 @@ namespace JAS.MediDeci
 
 
         // Buttons 1-4 on Main Game Sceness‰, Play game, how to play ja quit game napit on main menussa
-        // Klikkaa nappulaa ja se laskee kuluneen ajan ja heitt‰‰ main menuun
+        // Klikkaa nappulaa ja se laskee kuluneen ajan ja antaa tulosruudun, josta voi palata menuun
+        // T‰ss‰ vaiheessa button1 on aina se oikea vastaus. Sen paikkaa voi muuttaa sceness‰, mutta pit‰k‰‰ viel‰ se button 1 oikeana vastauksena
         public void Clicked1() 
         {
             Debug.Log("You clicked button 1");
             clickTime = Time.time;
             resultTime = clickTime - startTime;
             Debug.Log("Your reactiontime is: " + resultTime);
-            BackToMenu();
+            AnswerButtonsVisible.SetActive(false);
+            BackToMenuButtonVisible.SetActive(true);
+            resultText.text = "You were correct. Your reactiontime was: " + resultTime + " seconds";
+            //BackToMenu();
         }
         public void Clicked2()
         {
@@ -38,7 +56,10 @@ namespace JAS.MediDeci
             clickTime = Time.time;
             resultTime = clickTime - startTime;
             Debug.Log("Your reactiontime is: " + resultTime);
-            BackToMenu();
+            AnswerButtonsVisible.SetActive(false);
+            BackToMenuButtonVisible.SetActive(true);
+            resultText.text = "You were incorrect. Your reactiontime was: " + resultTime + " seconds";
+            //BackToMenu();
         }
         public void Clicked3()
         {
@@ -46,7 +67,10 @@ namespace JAS.MediDeci
             clickTime = Time.time;
             resultTime = clickTime - startTime;
             Debug.Log("Your reactiontime is: " + resultTime);
-            BackToMenu();
+            AnswerButtonsVisible.SetActive(false);
+            BackToMenuButtonVisible.SetActive(true);
+            resultText.text = "You were incorrect. Your reactiontime was: " + resultTime + " seconds";
+            //BackToMenu();
         }
         public void Clicked4()
         {
@@ -54,13 +78,16 @@ namespace JAS.MediDeci
             clickTime = Time.time;
             resultTime = clickTime - startTime;
             Debug.Log("Your reactiontime is: " + resultTime);
-            BackToMenu();
+            AnswerButtonsVisible.SetActive(false);
+            BackToMenuButtonVisible.SetActive(true);
+            resultText.text = "You were incorrect. Your reactiontime was: " + resultTime + " seconds";
+            //BackToMenu();
         }
 
         // Aloita peli, lataa main game scene
         public void PlayGameButton()
         {
-            SceneManager.LoadScene("Main game");
+            SceneManager.LoadScene(RandomScene);
         }
 
         // Sulje peli nappia painamalla
