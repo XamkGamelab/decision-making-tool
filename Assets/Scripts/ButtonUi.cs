@@ -47,7 +47,7 @@ namespace JAS.MediDeci
             Debug.Log("Your reactiontime is: " + resultTime);
             AnswerButtonsVisible.SetActive(false);
             BackToMenuButtonVisible.SetActive(true);
-            resultText.text = "You were correct. Your reactiontime was: " + resultTime + " seconds";
+            resultText.text = "Olit oikeassa. Reaktioaikasi oli: " + resultTime + " sekuntia";
             //BackToMenu();
         }
         public void Clicked2()
@@ -58,7 +58,7 @@ namespace JAS.MediDeci
             Debug.Log("Your reactiontime is: " + resultTime);
             AnswerButtonsVisible.SetActive(false);
             BackToMenuButtonVisible.SetActive(true);
-            resultText.text = "You were incorrect. Your reactiontime was: " + resultTime + " seconds";
+            resultText.text = "Olit v‰‰r‰ss‰. Reaktioaikasi oli: " + resultTime + " sekuntia";
             //BackToMenu();
         }
         public void Clicked3()
@@ -69,7 +69,7 @@ namespace JAS.MediDeci
             Debug.Log("Your reactiontime is: " + resultTime);
             AnswerButtonsVisible.SetActive(false);
             BackToMenuButtonVisible.SetActive(true);
-            resultText.text = "You were incorrect. Your reactiontime was: " + resultTime + " seconds";
+            resultText.text = "Olit v‰‰r‰ss‰. Reaktioaikasi oli: " + resultTime + " sekuntia";
             //BackToMenu();
         }
         public void Clicked4()
@@ -80,14 +80,19 @@ namespace JAS.MediDeci
             Debug.Log("Your reactiontime is: " + resultTime);
             AnswerButtonsVisible.SetActive(false);
             BackToMenuButtonVisible.SetActive(true);
-            resultText.text = "You were incorrect. Your reactiontime was: " + resultTime + " seconds";
+            resultText.text = "Olit v‰‰r‰ss‰. Reaktioaikasi oli: " + resultTime + " sekuntia";
             //BackToMenu();
         }
 
         // Aloita peli, lataa main game scene
-        public void PlayGameButton()
+        public void PlayGame1Button()
         {
             SceneManager.LoadScene(RandomScene);
+        }
+
+        public void PlayGame2Button()
+        {
+            SceneManager.LoadScene("Game2");
         }
 
         // Sulje peli nappia painamalla
