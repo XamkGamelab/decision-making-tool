@@ -39,7 +39,7 @@ namespace JAS.MediDeci
         {
             if (readyToLoadScene && Input.GetMouseButtonDown(0))
             {
-                SceneManager.LoadScene("Main Menu");
+                SceneManager.LoadScene(0); // Main Menu
                 return;
             }
 

@@ -73,7 +73,6 @@ public class StoryUIManager : MonoBehaviour
     void ReturnToMenu()
     {
         Debug.Log("Returning to Menu...");
-        // You can load a menu scene like this:
-        // SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0); // Main Menu
     }
 }

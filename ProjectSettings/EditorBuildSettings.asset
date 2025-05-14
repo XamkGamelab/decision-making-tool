@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game2.unity
     guid: b8995d8ed21fd4f4abaecb4169ac3df8
+  - enabled: 1
+    path: Assets/Scenes/Testi.unity
+    guid: ad398e7f483d10b47be7a3f76f5a12d7
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 0b1080346084e6a42b38fc6aac52e993, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: e29fabafe29c920498c37ba63911eaf9, type: 2}

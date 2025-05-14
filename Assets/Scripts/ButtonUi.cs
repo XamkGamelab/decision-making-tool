@@ -4,7 +4,7 @@ using TMPro;
 
 namespace JAS.MediDeci
 {
-    
+
     public class ButtonUi : MonoBehaviour
     {
         public float startTime;
@@ -30,16 +30,16 @@ namespace JAS.MediDeci
         }
 
         // T‰m‰ on vain ajan testailua varten, poistetaan varmaan lopuksi
-        public void BackToMenu() 
+        public void BackToMenu()
         {
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene(0); // Main Menu
         }
 
 
         // Buttons 1-4 on Main Game Sceness‰, Play game, how to play ja quit game napit on main menussa
         // Klikkaa nappulaa ja se laskee kuluneen ajan ja antaa tulosruudun, josta voi palata menuun
         // T‰ss‰ vaiheessa button1 on aina se oikea vastaus. Sen paikkaa voi muuttaa sceness‰, mutta pit‰k‰‰ viel‰ se button 1 oikeana vastauksena
-        public void Clicked1() 
+        public void Clicked1()
         {
             Debug.Log("You clicked button 1");
             clickTime = Time.time;
@@ -87,17 +87,26 @@ namespace JAS.MediDeci
         // Aloita peli, lataa main game scene
         public void PlayGame1Button()
         {
+            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
             SceneManager.LoadScene(RandomScene);
         }
 
         public void PlayGame2Button()
         {
-            SceneManager.LoadScene("Game2");
+            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+            SceneManager.LoadScene(4); // Game 2
+        }
+
+        public void PlayGame3Button()
+        {
+            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+            SceneManager.LoadScene(5); // Testi / Game 3
         }
 
         // Sulje peli nappia painamalla
         public void QuitQameButton()
         {
+            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
             Debug.Log("You have quit the game");
             Application.Quit();
         }
