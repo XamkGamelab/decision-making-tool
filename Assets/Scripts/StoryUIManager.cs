@@ -40,7 +40,13 @@ public class StoryUIManager : MonoBehaviour
             Button1.GetComponentInChildren<TextMeshProUGUI>().text = node.Button1Text;
             Button1.onClick.RemoveAllListeners();
             if (node.Node1 != null)
-                Button1.onClick.AddListener(() => LoadNode(node.Node1));
+            {
+                Button1.onClick.AddListener(() =>
+                {
+                    AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                    LoadNode(node.Node1);
+                });
+            }
         }
 
         if (node.showButton2)
@@ -48,7 +54,13 @@ public class StoryUIManager : MonoBehaviour
             Button2.GetComponentInChildren<TextMeshProUGUI>().text = node.Button2Text;
             Button2.onClick.RemoveAllListeners();
             if (node.Node2 != null)
-                Button2.onClick.AddListener(() => LoadNode(node.Node2));
+            {
+                Button2.onClick.AddListener(() =>
+                {
+                    AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                    LoadNode(node.Node2);
+                });
+            }
         }
 
         if (node.showButton3)
@@ -56,7 +68,13 @@ public class StoryUIManager : MonoBehaviour
             Button3.GetComponentInChildren<TextMeshProUGUI>().text = node.Button3Text;
             Button3.onClick.RemoveAllListeners();
             if (node.Node3 != null)
-                Button3.onClick.AddListener(() => LoadNode(node.Node3));
+            {
+                Button3.onClick.AddListener(() =>
+                {
+                    AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                    LoadNode(node.Node3);
+                });
+            }
         }
 
         if (node.showButton4)
@@ -64,7 +82,13 @@ public class StoryUIManager : MonoBehaviour
             Button4.GetComponentInChildren<TextMeshProUGUI>().text = node.Button4Text;
             Button4.onClick.RemoveAllListeners();
             if (node.Node4 != null)
-                Button4.onClick.AddListener(() => LoadNode(node.Node4));
+            {
+                Button4.onClick.AddListener(() =>
+                {
+                    AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                    LoadNode(node.Node4);
+                });
+            }
         }
 
         returnToMenuButton.gameObject.SetActive(node.showReturnToMenu);
@@ -72,6 +96,7 @@ public class StoryUIManager : MonoBehaviour
 
     void ReturnToMenu()
     {
+        AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
         Debug.Log("Returning to Menu...");
         SceneManager.LoadScene(0); // Main Menu
     }

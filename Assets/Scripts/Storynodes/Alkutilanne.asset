@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
-  m_Name: Node1
+  m_Name: Alkutilanne
   m_EditorClassIdentifier: 
-  questionText: Kysymys 1
-  Button1Text: Nappi1
-  Button2Text: Nappi2
-  Button3Text: Nappi3
-  Button4Text: Nappi4
+  questionText: "Mik\xE4 on todenn\xE4k\xF6isin seuraava tilanne?"
+  Button1Text: 711
+  Button2Text: 
+  Button3Text: 
+  Button4Text: 
   Node1: {fileID: 11400000, guid: 801da7596f452ea4a9f2c442528dbae3, type: 2}
-  Node2: {fileID: 11400000, guid: 9289ca5cfd137824bba1ae561bdff745, type: 2}
-  Node3: {fileID: 11400000, guid: 9289ca5cfd137824bba1ae561bdff745, type: 2}
-  Node4: {fileID: 11400000, guid: 9289ca5cfd137824bba1ae561bdff745, type: 2}
+  Node2: {fileID: 0}
+  Node3: {fileID: 0}
+  Node4: {fileID: 0}
   showReturnToMenu: 0
   showButton1: 1
-  showButton2: 1
-  showButton3: 1
-  showButton4: 1
+  showButton2: 0
+  showButton3: 0
+  showButton4: 0

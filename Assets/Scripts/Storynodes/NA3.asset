@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
-  m_Name: NodeWrong
+  m_Name: NA3
   m_EditorClassIdentifier: 
-  questionText: "H\xE4visit pelin"
-  Button1Text: 1
-  Button2Text: 2
-  Button3Text: 3
-  Button4Text: 4
-  Node1: {fileID: 0}
-  Node2: {fileID: 0}
+  questionText: "Olet matkalla, mit\xE4 teet seuraavaksi?"
+  Button1Text: "Varmista, ett\xE4 tarvittava laitteisto on mukana"
+  Button2Text: "Seuraa h\xE4t\xE4keskuksen tilannep\xE4ivityksi\xE4"
+  Button3Text: 
+  Button4Text: 
+  Node1: {fileID: 11400000, guid: 5b650783ddfb8c34da936f8871b3a2ce, type: 2}
+  Node2: {fileID: 11400000, guid: 5b650783ddfb8c34da936f8871b3a2ce, type: 2}
   Node3: {fileID: 0}
   Node4: {fileID: 0}
-  showReturnToMenu: 1
-  showButton1: 0
-  showButton2: 0
+  showReturnToMenu: 0
+  showButton1: 1
+  showButton2: 1
   showButton3: 0
   showButton4: 0

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: NB4
+  m_EditorClassIdentifier: 
+  questionText: "Ilmatie on turvattu. Mit\xE4 teet seuraavaksi?"
+  Button1Text: "Kuljeta potilas p\xE4ivystykseen"
+  Button2Text: 
+  Button3Text: 
+  Button4Text: 
+  Node1: {fileID: 11400000, guid: 71da62adf143ce345bfe4d085059b414, type: 2}
+  Node2: {fileID: 0}
+  Node3: {fileID: 0}
+  Node4: {fileID: 0}
+  showReturnToMenu: 0
+  showButton1: 1
+  showButton2: 0
+  showButton3: 0
+  showButton4: 0

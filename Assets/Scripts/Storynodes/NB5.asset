@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: NB5
+  m_EditorClassIdentifier: 
+  questionText: "Potilas on nyt p\xE4ivystyksess\xE4. Voit poistua paikalta"
+  Button1Text: Poistu paikalta
+  Button2Text: 
+  Button3Text: 
+  Button4Text: 
+  Node1: {fileID: 11400000, guid: b82fd53472db58446835efae22097935, type: 2}
+  Node2: {fileID: 0}
+  Node3: {fileID: 0}
+  Node4: {fileID: 0}
+  showReturnToMenu: 0
+  showButton1: 1
+  showButton2: 0
+  showButton3: 0
+  showButton4: 0
