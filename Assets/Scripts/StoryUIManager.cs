@@ -16,8 +16,16 @@ public class StoryUIManager : MonoBehaviour
 
     private StoryNode currentNode;
 
+    public Image nodeImageDisplay;
+
     void Start()
     {
+        // Ensure the game background music plays
+        if (BGAudioManager.instance != null)
+        {
+            BGAudioManager.instance.PlayMusic(BGAudioManager.instance.gameMusic);
+        }
+
         LoadNode(startingNode);
 
         returnToMenuButton.onClick.AddListener(ReturnToMenu);
@@ -33,6 +41,17 @@ public class StoryUIManager : MonoBehaviour
         Button2.gameObject.SetActive(node.showButton2);
         Button3.gameObject.SetActive(node.showButton3);
         Button4.gameObject.SetActive(node.showButton4);
+
+        // Set image if enabled
+        if (node.showImage && node.nodeImage != null)
+        {
+            nodeImageDisplay.gameObject.SetActive(true);
+            nodeImageDisplay.sprite = node.nodeImage;
+        }
+        else
+        {
+            nodeImageDisplay.gameObject.SetActive(false);
+        }
 
         // Set text if the button is shown
         if (node.showButton1)

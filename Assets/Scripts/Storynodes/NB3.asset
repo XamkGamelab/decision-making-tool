@@ -27,3 +27,5 @@ MonoBehaviour:
   showButton2: 0
   showButton3: 0
   showButton4: 0
+  nodeImage: {fileID: 3880352080343607156, guid: 125b6b624cad0cf49b06ee655e916d30, type: 3}
+  showImage: 0

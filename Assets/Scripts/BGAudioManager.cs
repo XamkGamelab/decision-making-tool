@@ -1,53 +1,84 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BGAudioManager : GenericSingleton<BGAudioManager>
 {
-    public AudioClip BGMusic;
+    public AudioClip mainMenuMusic;
+    public AudioClip gameMusic;
 
-    private AudioSource AudioSourceBG;
+    private AudioSource audioSource;
 
-    public void PlayAudioClip(AudioClip clip)
+    public override void Awake()
     {
-        AudioSourceBG.clip = clip;
-        AudioSourceBG.PlayOneShot(clip);
+        base.Awake();
 
-    }
-
-    // Play background music and make it loop
-    public void PlayBackgroundMusic()
-    {
-        AudioSourceBG.clip = BGMusic;
-        AudioSourceBG.loop = true;  // Set to loop
-        AudioSourceBG.Play();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        AudioSourceBG = gameObject.AddComponent<AudioSource>();
-
-        // Only start background music if the correct scene is active
-        if (SceneManager.GetActiveScene().name == "Testi")
+        if (audioSource == null)
         {
-            PlayBackgroundMusic();
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.loop = true;
+        }
+
+        // Register scene loaded callback ONLY if not already
+        SceneManager.sceneLoaded -= OnSceneLoaded; // remove first, in case it's been registered before
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "Main Menu":
+                PlayMusicSafe(mainMenuMusic);
+                break;
+
+            case "Testi": // your game scene
+                PlayMusicSafe(gameMusic);
+                break;
+
+            default:
+                StopMusic();
+                break;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayMusic(AudioClip clip)
     {
-        if (SceneManager.GetActiveScene().name == "Testi" && !AudioSourceBG.isPlaying)
+        if (clip == null)
+            return;
+
+        if (audioSource == null)
         {
-            PlayBackgroundMusic();
+            Debug.LogWarning("audioSource is null. Reinitializing.");
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.loop = true;
         }
 
-        if (SceneManager.GetActiveScene().name == "Main Menu" && AudioSourceBG.isPlaying)
-        {
-            AudioSourceBG.Stop();
-        }
+        // Avoid restarting if the same clip is already playing
+        if (audioSource.clip == clip && audioSource.isPlaying)
+            return;
 
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        if (audioSource == null)
+            return;
+
+        audioSource.Stop();
+        audioSource.clip = null;
+    }
+
+    public static void PlayMusicSafe(AudioClip clip)
+    {
+        if (instance != null && instance.gameObject != null)
+        {
+            instance.PlayMusic(clip);
+        }
+        else
+        {
+            Debug.LogWarning("BGAudioManager instance is null or destroyed. Cannot play music.");
+        }
     }
 }

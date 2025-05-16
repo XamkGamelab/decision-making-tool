@@ -22,4 +22,7 @@ public class StoryNode : ScriptableObject
     public bool showButton2 = true;
     public bool showButton3 = true;
     public bool showButton4 = true;
+
+    public Sprite nodeImage;
+    public bool showImage;
 }

@@ -20,4 +20,12 @@ public class GenericSingleton<T> : MonoBehaviour where T : Component
             Destroy(gameObject);
         }
     }
+
+    protected virtual void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null;
+        }
+    }
 }

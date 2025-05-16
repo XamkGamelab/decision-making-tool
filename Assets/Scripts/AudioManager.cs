@@ -13,9 +13,13 @@ public class AudioManager : GenericSingleton<AudioManager>
 
     public void PlayAudioClip(AudioClip clip)
     {
-        AudioSource.clip = clip;
-        AudioSource.PlayOneShot(clip);
+        if (AudioSource == null)
+        {
+            Debug.LogWarning("AudioSource is null. Cannot play audio clip.");
+            return;
+        }
 
+        AudioSource.PlayOneShot(clip);
     }
 
     // Start is called before the first frame update
