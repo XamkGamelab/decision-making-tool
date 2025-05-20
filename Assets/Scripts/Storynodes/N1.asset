@@ -13,18 +13,13 @@ MonoBehaviour:
   m_Name: N1
   m_EditorClassIdentifier: 
   questionText: "Saat h\xE4lytyksen 711. Potilaalla on ilmatie-este. Mit\xE4 teet?"
-  Button1Text: "L\xE4hde v\xE4litt\xF6m\xE4sti h\xE4lytysajolle"
-  Button2Text: "Ota yhteytt\xE4 tapauspaikalla oleviin henkil\xF6ihin"
-  Button3Text: Ota mukaan erityisvarusteita
-  Button4Text: "Kutsu paikalle toinen yksikk\xF6, kuten l\xE4\xE4k\xE4ri tai pelastuslaitos"
-  Node1: {fileID: 11400000, guid: 9289ca5cfd137824bba1ae561bdff745, type: 2}
-  Node2: {fileID: 11400000, guid: c41fb6c60e996b04da1722a0c94ed0fa, type: 2}
-  Node3: {fileID: 11400000, guid: 99524d0dd1d76d9418c1b24c3c8da862, type: 2}
-  Node4: {fileID: 11400000, guid: 7a88f6c4e5d5db44b94c2144524b7039, type: 2}
-  showReturnToMenu: 0
-  showButton1: 1
-  showButton2: 1
-  showButton3: 1
-  showButton4: 1
   nodeImage: {fileID: 8043091600683127539, guid: cecb2a76bb5fff14caf8fdb9faee8b86, type: 3}
   showImage: 1
+  options:
+  - optionText: 
+    nextNode: {fileID: 0}
+    isVisible: 0
+  - optionText: 
+    nextNode: {fileID: 0}
+    isVisible: 0
+  showReturnToMenu: 0
