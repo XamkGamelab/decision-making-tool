@@ -14,18 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeId: NA3
   questionText: "Olet matkalla, mit\xE4 teet seuraavaksi?"
-  Button1Text: "Varmista, ett\xE4 tarvittava laitteisto on mukana"
-  Button2Text: "Seuraa h\xE4t\xE4keskuksen tilannep\xE4ivityksi\xE4"
-  Button3Text: 
-  Button4Text: 
-  Node1: {fileID: 11400000, guid: 5b650783ddfb8c34da936f8871b3a2ce, type: 2}
-  Node2: {fileID: 11400000, guid: 5b650783ddfb8c34da936f8871b3a2ce, type: 2}
-  Node3: {fileID: 0}
-  Node4: {fileID: 0}
-  showReturnToMenu: 0
-  showButton1: 1
-  showButton2: 1
-  showButton3: 0
-  showButton4: 0
   nodeImage: {fileID: 0}
   showImage: 0
+  options:
+  - optionText: "Varmista, ett\xE4 tarvittava laitteisto on mukana"
+    nextNode: {fileID: 11400000, guid: 5b650783ddfb8c34da936f8871b3a2ce, type: 2}
+    isVisible: 1
+  - optionText: "Seuraa h\xE4t\xE4keskuksen tilannep\xE4ivityksi\xE4"
+    nextNode: {fileID: 11400000, guid: 5b650783ddfb8c34da936f8871b3a2ce, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0

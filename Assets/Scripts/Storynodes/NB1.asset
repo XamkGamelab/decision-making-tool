@@ -14,18 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeId: NB1
   questionText: "Sait lis\xE4tietoa potilaasta, joka voi auttaa."
-  Button1Text: "L\xE4hde h\xE4lytysajolle 1"
-  Button2Text: 
-  Button3Text: 
-  Button4Text: 
-  Node1: {fileID: 11400000, guid: 9289ca5cfd137824bba1ae561bdff745, type: 2}
-  Node2: {fileID: 0}
-  Node3: {fileID: 0}
-  Node4: {fileID: 0}
-  showReturnToMenu: 0
-  showButton1: 1
-  showButton2: 0
-  showButton3: 0
-  showButton4: 0
   nodeImage: {fileID: 0}
   showImage: 0
+  options:
+  - optionText: "L\xE4hde h\xE4lytysajolle"
+    nextNode: {fileID: 11400000, guid: 9289ca5cfd137824bba1ae561bdff745, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0

@@ -14,18 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeId: NB4
   questionText: "Ilmatie on turvattu. Mit\xE4 teet seuraavaksi?"
-  Button1Text: "Kuljeta potilas p\xE4ivystykseen"
-  Button2Text: 
-  Button3Text: 
-  Button4Text: 
-  Node1: {fileID: 11400000, guid: 71da62adf143ce345bfe4d085059b414, type: 2}
-  Node2: {fileID: 0}
-  Node3: {fileID: 0}
-  Node4: {fileID: 0}
-  showReturnToMenu: 0
-  showButton1: 1
-  showButton2: 0
-  showButton3: 0
-  showButton4: 0
   nodeImage: {fileID: 0}
   showImage: 0
+  options:
+  - optionText: "Kuljeta potilas p\xE4ivystykseen"
+    nextNode: {fileID: 11400000, guid: 71da62adf143ce345bfe4d085059b414, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0

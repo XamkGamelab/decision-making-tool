@@ -14,18 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeId: NA4
   questionText: "Saavut potilaan luokse. Potilas on tajuton. Mit\xE4 teet ensin?"
-  Button1Text: Suorita ABCDE arviointi
-  Button2Text: Aloita elvytystoimenpiteet
-  Button3Text: 
-  Button4Text: 
-  Node1: {fileID: 11400000, guid: 44717cba0909cf649b5a49e936ada5c4, type: 2}
-  Node2: {fileID: 11400000, guid: 44717cba0909cf649b5a49e936ada5c4, type: 2}
-  Node3: {fileID: 0}
-  Node4: {fileID: 0}
-  showReturnToMenu: 0
-  showButton1: 1
-  showButton2: 1
-  showButton3: 0
-  showButton4: 0
   nodeImage: {fileID: 0}
   showImage: 0
+  options:
+  - optionText: Suorita ABCDE arviointi
+    nextNode: {fileID: 11400000, guid: 44717cba0909cf649b5a49e936ada5c4, type: 2}
+    isVisible: 1
+  - optionText: Aloita elvytystoimenpiteet
+    nextNode: {fileID: 11400000, guid: 44717cba0909cf649b5a49e936ada5c4, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0

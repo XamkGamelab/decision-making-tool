@@ -10,7 +10,7 @@ using System.Collections.Generic;
 /// </summary>
 public class StoryUIManager : MonoBehaviour
 {
-    [Header("joo")]
+    [Header("Choicelogger Object")]
     public ChoiceLogger choiceLogger;
     private string playerId;
 
@@ -86,11 +86,22 @@ public class StoryUIManager : MonoBehaviour
 
             // Cache to local variable to avoid closure issues
             StoryNode nextNode = option.nextNode;
+            string selectedChoiceText = option.optionText;
             button.onClick.AddListener(() =>
             {
                 if (AudioManager.instance != null)
                 {
                     AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                }
+
+                if (choiceLogger != null)
+                {
+                    Debug.Log($"Logging choice: {selectedChoiceText} at node {node.nodeId}");
+                    choiceLogger.LogChoice(playerId, selectedChoiceText, node.nodeId);
+                }
+                else
+                {
+                    Debug.LogWarning("ChoiceLogger is not assigned!");
                 }
 
                 if (nextNode != null)

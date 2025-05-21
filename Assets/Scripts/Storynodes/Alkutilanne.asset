@@ -14,18 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeId: Alkutilanne
   questionText: "Mik\xE4 on todenn\xE4k\xF6isin seuraava tilanne?"
-  Button1Text: 711
-  Button2Text: 
-  Button3Text: 
-  Button4Text: 
-  Node1: {fileID: 11400000, guid: 801da7596f452ea4a9f2c442528dbae3, type: 2}
-  Node2: {fileID: 0}
-  Node3: {fileID: 0}
-  Node4: {fileID: 0}
-  showReturnToMenu: 0
-  showButton1: 1
-  showButton2: 0
-  showButton3: 0
-  showButton4: 0
   nodeImage: {fileID: -4586572322597978023, guid: f1ece12de286a7a409f9ea19f0e76e8c, type: 3}
   showImage: 1
+  options:
+  - optionText: 711
+    nextNode: {fileID: 11400000, guid: 801da7596f452ea4a9f2c442528dbae3, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0

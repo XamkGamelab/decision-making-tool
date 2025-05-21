@@ -14,18 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeId: NA6
   questionText: "Potilas on nyt p\xE4ivystyksess\xE4. Voit poistua paikalta"
-  Button1Text: Poistu paikalta
-  Button2Text: 
-  Button3Text: 
-  Button4Text: 
-  Node1: {fileID: 11400000, guid: b82fd53472db58446835efae22097935, type: 2}
-  Node2: {fileID: 0}
-  Node3: {fileID: 0}
-  Node4: {fileID: 0}
-  showReturnToMenu: 0
-  showButton1: 1
-  showButton2: 0
-  showButton3: 0
-  showButton4: 0
   nodeImage: {fileID: 0}
   showImage: 0
+  options:
+  - optionText: Poistu paikalta
+    nextNode: {fileID: 11400000, guid: b82fd53472db58446835efae22097935, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0
