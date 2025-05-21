@@ -151,13 +151,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceLogger: {fileID: 1468328875}
   questionText: {fileID: 474528500}
-  Button1: {fileID: 1671474799}
-  Button2: {fileID: 331507664}
-  Button3: {fileID: 1738680296}
-  Button4: {fileID: 733117894}
-  returnToMenuButton: {fileID: 345044471}
-  startingNode: {fileID: 11400000, guid: 8231b7796f7e5bf469d99ccbd5bbc841, type: 2}
   nodeImageDisplay: {fileID: 1094251207}
+  returnToMenuButton: {fileID: 345044471}
+  optionButtons:
+  - {fileID: 1671474799}
+  - {fileID: 331507664}
+  - {fileID: 1738680296}
+  - {fileID: 733117894}
+  startingNode: {fileID: 11400000, guid: 8231b7796f7e5bf469d99ccbd5bbc841, type: 2}
 --- !u!4 &88520475
 Transform:
   m_ObjectHideFlags: 0

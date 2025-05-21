@@ -9,7 +9,7 @@ public class ChoiceLogger : MonoBehaviour
         StartCoroutine(SendChoice(playerId, choiceText, sceneName));
     }
 
-    IEnumerator SendChoice(string playerId, string choiceText, string sceneName)
+    private IEnumerator SendChoice(string playerId, string choiceText, string sceneName)
     {
         string url = "http://localhost:3000/save-choice";
 

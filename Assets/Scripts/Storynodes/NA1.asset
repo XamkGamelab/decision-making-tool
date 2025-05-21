@@ -12,20 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
   m_Name: NA1
   m_EditorClassIdentifier: 
-  nodeId: NA1
+  nodeId: 
   questionText: Nyt sinulla on erikoisvarusteet mukana
-  Button1Text: "L\xE4hde h\xE4lytysajolle"
-  Button2Text: 
-  Button3Text: 
-  Button4Text: 
-  Node1: {fileID: 11400000, guid: ee865fc2b99673c4da440abe3b57c03e, type: 2}
-  Node2: {fileID: 0}
-  Node3: {fileID: 0}
-  Node4: {fileID: 0}
-  showReturnToMenu: 0
-  showButton1: 1
-  showButton2: 0
-  showButton3: 0
-  showButton4: 0
   nodeImage: {fileID: 0}
-  showImage: 0
+  showImage: 1
+  options:
+  - optionText: 
+    nextNode: {fileID: 0}
+    isVisible: 0
+  - optionText: 
+    nextNode: {fileID: 0}
+    isVisible: 0
+  showReturnToMenu: 0
