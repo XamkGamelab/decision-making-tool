@@ -9,6 +9,8 @@ using UnityEngine;
 public class StoryNode : ScriptableObject
 {
     [Header("Node Content")]
+    [Tooltip("An identifier that the backend will use to recognize the node.")]
+    public string nodeId;
     [Tooltip("The main text or question shown to the player for this story node.")]
     [TextArea] public string questionText;
 

@@ -10,6 +10,10 @@ using System.Collections.Generic;
 /// </summary>
 public class StoryUIManager : MonoBehaviour
 {
+    [Header("joo")]
+    public ChoiceLogger choiceLogger;
+    private string playerId;
+
     [Header("UI References")]
     public TextMeshProUGUI questionText;
     public Image nodeImageDisplay;
@@ -24,6 +28,14 @@ public class StoryUIManager : MonoBehaviour
 
     private void Start()
     {
+        // If you want the same player ID every time the player reopens the game
+        if (!PlayerPrefs.HasKey("PlayerID"))
+        {
+            PlayerPrefs.SetString("PlayerID", System.Guid.NewGuid().ToString());
+        }
+
+        playerId = PlayerPrefs.GetString("PlayerID");
+
         // Optional: Start background music
         if (BGAudioManager.instance != null)
         {
@@ -61,7 +73,7 @@ public class StoryUIManager : MonoBehaviour
         // Apply available options
         for (int i = 0; i < Mathf.Min(node.Options.Count, optionButtons.Count); i++)
         {
-            StoryNode.StoryOption option = node.Options[i];
+            var option = node.Options[i];
             if (option == null || !option.isVisible) continue;
 
             Button button = optionButtons[i];
