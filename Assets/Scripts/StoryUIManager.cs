@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class StoryUIManager : MonoBehaviour
 {
+    public ChoiceLogger choiceLogger;
+    private string playerId;
+
     public TextMeshProUGUI questionText;
     public Button Button1;
     public Button Button2;
@@ -20,6 +23,13 @@ public class StoryUIManager : MonoBehaviour
 
     void Start()
     {
+        // If you want the same player ID every time the player reopens the game
+        if (!PlayerPrefs.HasKey("PlayerID"))
+        {
+            PlayerPrefs.SetString("PlayerID", System.Guid.NewGuid().ToString());
+        }
+        playerId = PlayerPrefs.GetString("PlayerID");
+
         // Ensure the game background music plays
         if (BGAudioManager.instance != null)
         {
@@ -63,6 +73,8 @@ public class StoryUIManager : MonoBehaviour
                 Button1.onClick.AddListener(() =>
                 {
                     AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                    //Log the choice
+                    choiceLogger.LogChoice(playerId, node.Button1Text, currentNode.nodeId);
                     LoadNode(node.Node1);
                 });
             }
@@ -77,6 +89,7 @@ public class StoryUIManager : MonoBehaviour
                 Button2.onClick.AddListener(() =>
                 {
                     AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                    choiceLogger.LogChoice(playerId, node.Button2Text, currentNode.nodeId);
                     LoadNode(node.Node2);
                 });
             }
@@ -91,6 +104,7 @@ public class StoryUIManager : MonoBehaviour
                 Button3.onClick.AddListener(() =>
                 {
                     AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                    choiceLogger.LogChoice(playerId, node.Button3Text, currentNode.nodeId);
                     LoadNode(node.Node3);
                 });
             }
@@ -105,6 +119,7 @@ public class StoryUIManager : MonoBehaviour
                 Button4.onClick.AddListener(() =>
                 {
                     AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+                    choiceLogger.LogChoice(playerId, node.Button4Text, currentNode.nodeId);
                     LoadNode(node.Node4);
                 });
             }
@@ -112,6 +127,8 @@ public class StoryUIManager : MonoBehaviour
 
         returnToMenuButton.gameObject.SetActive(node.showReturnToMenu);
     }
+
+
 
     void ReturnToMenu()
     {

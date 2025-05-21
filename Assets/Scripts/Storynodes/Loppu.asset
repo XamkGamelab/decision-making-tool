@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
   m_Name: Loppu
   m_EditorClassIdentifier: 
+  nodeId: Loppu
   questionText: "P\xE4\xE4sit loppuun"
   Button1Text: 
   Button2Text: 
@@ -26,3 +27,5 @@ MonoBehaviour:
   showButton2: 0
   showButton3: 0
   showButton4: 0
+  nodeImage: {fileID: 0}
+  showImage: 0

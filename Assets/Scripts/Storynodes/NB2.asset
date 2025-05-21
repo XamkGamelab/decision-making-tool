@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
   m_Name: NB2
   m_EditorClassIdentifier: 
+  nodeId: NB2
   questionText: "Olet matkalla, mit\xE4 teet seuraavaksi"
   Button1Text: "Varmista, ett\xE4 tarvittava laitteisto on mukana"
   Button2Text: "Seuraa h\xE4t\xE4keskuksen tilannep\xE4ivityksi\xE4"

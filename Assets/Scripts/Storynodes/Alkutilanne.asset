@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
   m_Name: Alkutilanne
   m_EditorClassIdentifier: 
+  nodeId: Alkutilanne
   questionText: "Mik\xE4 on todenn\xE4k\xF6isin seuraava tilanne?"
   Button1Text: 711
   Button2Text: 

@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewStoryNode", menuName = "ChooseYourAdventure/Story Node")]
 public class StoryNode : ScriptableObject
 {
+    public string nodeId; // <- Add this line!
+
     [TextArea]
     public string questionText;
 

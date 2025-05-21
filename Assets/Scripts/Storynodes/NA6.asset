@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
   m_Name: NA6
   m_EditorClassIdentifier: 
+  nodeId: NA6
   questionText: "Potilas on nyt p\xE4ivystyksess\xE4. Voit poistua paikalta"
   Button1Text: Poistu paikalta
   Button2Text: 
@@ -26,3 +27,5 @@ MonoBehaviour:
   showButton2: 0
   showButton3: 0
   showButton4: 0
+  nodeImage: {fileID: 0}
+  showImage: 0

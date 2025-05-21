@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
   m_Name: N1
   m_EditorClassIdentifier: 
+  nodeId: N1
   questionText: "Saat h\xE4lytyksen 711. Potilaalla on ilmatie-este. Mit\xE4 teet?"
   Button1Text: "L\xE4hde v\xE4litt\xF6m\xE4sti h\xE4lytysajolle"
   Button2Text: "Ota yhteytt\xE4 tapauspaikalla oleviin henkil\xF6ihin"
