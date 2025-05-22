@@ -1,84 +1,107 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BGAudioManager : GenericSingleton<BGAudioManager>
+namespace JAS.MediDeci
 {
-    public AudioClip mainMenuMusic;
-    public AudioClip gameMusic;
-
-    private AudioSource audioSource;
-
-    public override void Awake()
+    /// <summary>
+    /// Background music manager that plays appropriate music based on active scene.
+    /// </summary>
+    public class BGAudioManager : GenericSingleton<BGAudioManager>
     {
-        base.Awake();
+        [Header("Music Clips")]
+        [Tooltip("Music for the main menu scene.")]
+        public AudioClip mainMenuMusic;
 
-        if (audioSource == null)
+        [Tooltip("Music for the game scene.")]
+        public AudioClip gameMusic;
+        private AudioSource _audioSource;
+
+        // Optional: Expose current music clip for inspection/debugging
+        public AudioClip CurrentClip => _audioSource != null ? _audioSource.clip : null;
+
+        protected override void Awake()
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.loop = true;
+            base.Awake();
+
+            EnsureAudioSource();
+
+            // Clean up previous subscriptions to avoid duplicates
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        // Register scene loaded callback ONLY if not already
-        SceneManager.sceneLoaded -= OnSceneLoaded; // remove first, in case it's been registered before
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        switch (scene.name)
+        private void EnsureAudioSource()
         {
-            case "Main Menu":
-                PlayMusicSafe(mainMenuMusic);
-                break;
+            if (_audioSource == null)
+            {
+                if (!TryGetComponent(out _audioSource))
+                    _audioSource = gameObject.AddComponent<AudioSource>();
 
-            case "Testi": // your game scene
-                PlayMusicSafe(gameMusic);
-                break;
-
-            default:
-                StopMusic();
-                break;
-        }
-    }
-
-    public void PlayMusic(AudioClip clip)
-    {
-        if (clip == null)
-            return;
-
-        if (audioSource == null)
-        {
-            Debug.LogWarning("audioSource is null. Reinitializing.");
-            audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.loop = true;
+                _audioSource.loop = true;
+                _audioSource.playOnAwake = false;
+            }
         }
 
-        // Avoid restarting if the same clip is already playing
-        if (audioSource.clip == clip && audioSource.isPlaying)
-            return;
-
-        audioSource.clip = clip;
-        audioSource.Play();
-    }
-
-    public void StopMusic()
-    {
-        if (audioSource == null)
-            return;
-
-        audioSource.Stop();
-        audioSource.clip = null;
-    }
-
-    public static void PlayMusicSafe(AudioClip clip)
-    {
-        if (instance != null && instance.gameObject != null)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            instance.PlayMusic(clip);
+            // Map scene name to audio clips
+            switch (scene.name)
+            {
+                case "Main Menu":
+                    PlayMusicSafe(mainMenuMusic);
+                    break;
+
+                case "Testi": // Replace with actual gameplay scene name(s)
+                    PlayMusicSafe(gameMusic);
+                    break;
+
+                default:
+                    StopMusic();
+                    break;
+            }
         }
-        else
+
+        public void PlayMusic(AudioClip clip)
         {
-            Debug.LogWarning("BGAudioManager instance is null or destroyed. Cannot play music.");
+            if (clip == null)
+            {
+                Debug.LogWarning("[BGAudioManager] Attempted to play a null clip.");
+                return;
+            }
+
+            EnsureAudioSource();
+
+            // Avoid restarting same clip
+            if (_audioSource.clip == clip && _audioSource.isPlaying)
+                return;
+
+            _audioSource.clip = clip;
+            _audioSource.Play();
+        }
+
+        public void StopMusic()
+        {
+            if (_audioSource == null || !_audioSource.isPlaying)
+                return;
+
+            _audioSource.Stop();
+            _audioSource.clip = null;
+        }
+
+        /// <summary>
+        /// Static safe wrapper to call music from other scripts.
+        /// </summary>
+        public static void PlayMusicSafe(AudioClip clip)
+        {
+            if (Instance != null)
+                Instance.PlayMusic(clip);
+            else
+                Debug.LogWarning("[BGAudioManager] Instance missing. Cannot play music.");
+        }
+
+        protected override void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 }
