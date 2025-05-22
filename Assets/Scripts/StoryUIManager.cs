@@ -8,107 +8,110 @@ using System.Collections.Generic;
 /// Manages the display and interaction of story nodes in the UI.
 /// Dynamically loads options based on the current node's data.
 /// </summary>
-public class StoryUIManager : MonoBehaviour
+namespace JAS.MediDeci
 {
-    [Header("joo")]
-    public ChoiceLogger choiceLogger;
-    private string playerId;
-
-    [Header("UI References")]
-    public TextMeshProUGUI questionText;
-    public Image nodeImageDisplay;
-    public Button returnToMenuButton;
-
-    [Tooltip("Pool of UI buttons used to represent choices. Set size to maximum expected options per node (e.g., 5).")]
-    public List<Button> optionButtons;
-
-    [Header("Starting Node")]
-    public StoryNode startingNode;
-    //private StoryNode currentNode;
-
-    private void Start()
+    public class StoryUIManager : MonoBehaviour
     {
-        // If you want the same player ID every time the player reopens the game
-        if (!PlayerPrefs.HasKey("PlayerID"))
+        [Header("joo")]
+        public ChoiceLogger choiceLogger;
+        private string playerId;
+
+        [Header("UI References")]
+        public TextMeshProUGUI questionText;
+        public Image nodeImageDisplay;
+        public Button returnToMenuButton;
+
+        [Tooltip("Pool of UI buttons used to represent choices. Set size to maximum expected options per node (e.g., 5).")]
+        public List<Button> optionButtons;
+
+        [Header("Starting Node")]
+        public StoryNode startingNode;
+        //private StoryNode currentNode;
+
+        private void Start()
         {
-            PlayerPrefs.SetString("PlayerID", System.Guid.NewGuid().ToString());
-        }
-
-        playerId = PlayerPrefs.GetString("PlayerID");
-
-        // Optional: Start background music
-        if (BGAudioManager.instance != null)
-        {
-            BGAudioManager.instance.PlayMusic(BGAudioManager.instance.gameMusic);
-        }
-
-        returnToMenuButton.onClick.AddListener(ReturnToMenu);
-        LoadNode(startingNode);
-    }
-
-    /// <summary>
-    /// Loads a StoryNode and updates all UI elements accordingly.
-    /// </summary>
-    private void LoadNode(StoryNode node)
-    {
-        //currentNode = node;
-
-        questionText.text = node.questionText;
-
-        // Handle image display
-        bool showImage = node.showImage && node.nodeImage != null;
-        nodeImageDisplay.gameObject.SetActive(showImage);
-        if (showImage)
-            nodeImageDisplay.sprite = node.nodeImage;
-
-        returnToMenuButton.gameObject.SetActive(node.showReturnToMenu);
-
-        // Reset all buttons
-        foreach (Button button in optionButtons)
-        {
-            button.gameObject.SetActive(false);
-            button.onClick.RemoveAllListeners();
-        }
-
-        // Apply available options
-        for (int i = 0; i < Mathf.Min(node.Options.Count, optionButtons.Count); i++)
-        {
-            var option = node.Options[i];
-            if (option == null || !option.isVisible) continue;
-
-            Button button = optionButtons[i];
-            TextMeshProUGUI textComponent = button.GetComponentInChildren<TextMeshProUGUI>();
-
-            if (textComponent != null)
-                textComponent.text = option.optionText;
-
-            button.gameObject.SetActive(true);
-
-            // Cache to local variable to avoid closure issues
-            StoryNode nextNode = option.nextNode;
-            button.onClick.AddListener(() =>
+            // If you want the same player ID every time the player reopens the game
+            if (!PlayerPrefs.HasKey("PlayerID"))
             {
-                if (AudioManager.instance != null)
-                {
-                    AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
-                }
+                PlayerPrefs.SetString("PlayerID", System.Guid.NewGuid().ToString());
+            }
 
-                if (nextNode != null)
-                    LoadNode(nextNode);
-            });
+            playerId = PlayerPrefs.GetString("PlayerID");
+
+            // Optional: Start background music
+            if (BGAudioManager.Instance != null)
+            {
+                BGAudioManager.Instance.PlayMusic(BGAudioManager.Instance.gameMusic);
+            }
+
+            returnToMenuButton.onClick.AddListener(ReturnToMenu);
+            LoadNode(startingNode);
         }
-    }
 
-    /// <summary>
-    /// Returns the player to the main menu scene.
-    /// </summary>
-    private void ReturnToMenu()
-    {
-        if (AudioManager.instance != null)
+        /// <summary>
+        /// Loads a StoryNode and updates all UI elements accordingly.
+        /// </summary>
+        private void LoadNode(StoryNode node)
         {
-            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+            //currentNode = node;
+
+            questionText.text = node.questionText;
+
+            // Handle image display
+            bool showImage = node.showImage && node.nodeImage != null;
+            nodeImageDisplay.gameObject.SetActive(showImage);
+            if (showImage)
+                nodeImageDisplay.sprite = node.nodeImage;
+
+            returnToMenuButton.gameObject.SetActive(node.showReturnToMenu);
+
+            // Reset all buttons
+            foreach (Button button in optionButtons)
+            {
+                button.gameObject.SetActive(false);
+                button.onClick.RemoveAllListeners();
+            }
+
+            // Apply available options
+            for (int i = 0; i < Mathf.Min(node.Options.Count, optionButtons.Count); i++)
+            {
+                var option = node.Options[i];
+                if (option == null || !option.isVisible) continue;
+
+                Button button = optionButtons[i];
+                TextMeshProUGUI textComponent = button.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (textComponent != null)
+                    textComponent.text = option.optionText;
+
+                button.gameObject.SetActive(true);
+
+                // Cache to local variable to avoid closure issues
+                StoryNode nextNode = option.nextNode;
+                button.onClick.AddListener(() =>
+                {
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
+                    }
+
+                    if (nextNode != null)
+                        LoadNode(nextNode);
+                });
+            }
         }
 
-        SceneManager.LoadScene(0);
+        /// <summary>
+        /// Returns the player to the main menu scene.
+        /// </summary>
+        private void ReturnToMenu()
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
+            }
+
+            SceneManager.LoadScene(0);
+        }
     }
 }

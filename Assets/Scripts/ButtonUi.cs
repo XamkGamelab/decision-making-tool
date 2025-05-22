@@ -4,112 +4,85 @@ using TMPro;
 
 namespace JAS.MediDeci
 {
-
     public class ButtonUi : MonoBehaviour
     {
-        public float startTime;
-        public float clickTime;
-        public float resultTime;
+        [Header("Timing")]
+        private float startTime;
+        private float clickTime;
+        private float resultTime;
 
-        public int RandomScene;
-
-
+        [Header("UI References")]
         public TextMeshProUGUI resultText;
-
         public GameObject AnswerButtonsVisible;
         public GameObject BackToMenuButtonVisible;
 
+        private int randomScene;
+
+        private const int MainMenuSceneIndex = 0;
+        private const int MaxRandomSceneIndex = 4; // Random scenes are 1ñ3
 
         private void Start()
         {
             startTime = Time.time;
             AnswerButtonsVisible.SetActive(true);
             BackToMenuButtonVisible.SetActive(false);
-            RandomScene = Random.Range(1, 4); // T‰ss‰ on vain scenet 1-3
-            Debug.Log("Random scene: " + RandomScene);
+            randomScene = Random.Range(1, MaxRandomSceneIndex);
+            Debug.Log("Random scene: " + randomScene);
         }
 
-        // T‰m‰ on vain ajan testailua varten, poistetaan varmaan lopuksi
         public void BackToMenu()
         {
-            SceneManager.LoadScene(0); // Main Menu
+            SceneManager.LoadScene(MainMenuSceneIndex);
         }
 
+        public void HandleAnswerClick(int buttonIndex)
+        {
+            Debug.Log($"You clicked button {buttonIndex}");
+            clickTime = Time.time;
+            resultTime = clickTime - startTime;
+            Debug.Log("Your reaction time is: " + resultTime);
 
-        // Buttons 1-4 on Main Game Sceness‰, Play game, how to play ja quit game napit on main menussa
-        // Klikkaa nappulaa ja se laskee kuluneen ajan ja antaa tulosruudun, josta voi palata menuun
-        // T‰ss‰ vaiheessa button1 on aina se oikea vastaus. Sen paikkaa voi muuttaa sceness‰, mutta pit‰k‰‰ viel‰ se button 1 oikeana vastauksena
-        public void Clicked1()
-        {
-            Debug.Log("You clicked button 1");
-            clickTime = Time.time;
-            resultTime = clickTime - startTime;
-            Debug.Log("Your reactiontime is: " + resultTime);
             AnswerButtonsVisible.SetActive(false);
             BackToMenuButtonVisible.SetActive(true);
-            resultText.text = "Olit oikeassa. Reaktioaikasi oli: " + resultTime + " sekuntia";
-            //BackToMenu();
-        }
-        public void Clicked2()
-        {
-            Debug.Log("You clicked button 2");
-            clickTime = Time.time;
-            resultTime = clickTime - startTime;
-            Debug.Log("Your reactiontime is: " + resultTime);
-            AnswerButtonsVisible.SetActive(false);
-            BackToMenuButtonVisible.SetActive(true);
-            resultText.text = "Olit v‰‰r‰ss‰. Reaktioaikasi oli: " + resultTime + " sekuntia";
-            //BackToMenu();
-        }
-        public void Clicked3()
-        {
-            Debug.Log("You clicked button 3");
-            clickTime = Time.time;
-            resultTime = clickTime - startTime;
-            Debug.Log("Your reactiontime is: " + resultTime);
-            AnswerButtonsVisible.SetActive(false);
-            BackToMenuButtonVisible.SetActive(true);
-            resultText.text = "Olit v‰‰r‰ss‰. Reaktioaikasi oli: " + resultTime + " sekuntia";
-            //BackToMenu();
-        }
-        public void Clicked4()
-        {
-            Debug.Log("You clicked button 4");
-            clickTime = Time.time;
-            resultTime = clickTime - startTime;
-            Debug.Log("Your reactiontime is: " + resultTime);
-            AnswerButtonsVisible.SetActive(false);
-            BackToMenuButtonVisible.SetActive(true);
-            resultText.text = "Olit v‰‰r‰ss‰. Reaktioaikasi oli: " + resultTime + " sekuntia";
-            //BackToMenu();
+
+            string resultMessage = buttonIndex == 1
+                ? $"Olit oikeassa. Reaktioaikasi oli: {resultTime:F2} sekuntia"
+                : $"Olit v‰‰r‰ss‰. Reaktioaikasi oli: {resultTime:F2} sekuntia";
+
+            resultText.text = resultMessage;
         }
 
-        // Aloita peli, lataa main game scene
         public void PlayGame1Button()
         {
-            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
-            SceneManager.LoadScene(RandomScene);
+            PlayClickSound();
+            SceneManager.LoadScene(randomScene);
         }
 
         public void PlayGame2Button()
         {
-            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
-            SceneManager.LoadScene(4); // Game 2
+            PlayClickSound();
+            SceneManager.LoadScene(4);
         }
 
         public void PlayGame3Button()
         {
-            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
-            SceneManager.LoadScene(5); // Testi / Game 3
+            PlayClickSound();
+            SceneManager.LoadScene(5);
         }
 
-        // Sulje peli nappia painamalla
-        public void QuitQameButton()
+        public void QuitGameButton()
         {
-            AudioManager.instance.PlayAudioClip(AudioManager.instance.ClickButtonSound);
+            PlayClickSound();
             Debug.Log("You have quit the game");
             Application.Quit();
         }
 
+        private void PlayClickSound()
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
+            }
+        }
     }
 }
