@@ -7778,7 +7778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d846a8f5073c2b488402a2f36f8e269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClickButtonSound: {fileID: 8300000, guid: 83bda0c045640374da17cc8c424cc12a, type: 3}
+  clickButtonSound: {fileID: 8300000, guid: 83bda0c045640374da17cc8c424cc12a, type: 3}
 --- !u!4 &1524567714
 Transform:
   m_ObjectHideFlags: 0
@@ -9128,10 +9128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44167402cc4f0734bbaba2416b0ed3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 0
-  clickTime: 0
-  resultTime: 0
-  RandomScene: 0
   resultText: {fileID: 1823718444}
   AnswerButtonsVisible: {fileID: 213030001}
   BackToMenuButtonVisible: {fileID: 213030001}
