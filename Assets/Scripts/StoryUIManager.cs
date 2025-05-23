@@ -26,7 +26,7 @@ namespace JAS.MediDeci
 
         [Header("Starting Node")]
         public StoryNode startingNode;
-        //private StoryNode currentNode;
+        private StoryNode _currentNode;
 
         private void Start()
         {
@@ -53,8 +53,7 @@ namespace JAS.MediDeci
         /// </summary>
         private void LoadNode(StoryNode node)
         {
-            //currentNode = node;
-
+            _currentNode = node;
             questionText.text = node.questionText;
 
             // Handle image display
