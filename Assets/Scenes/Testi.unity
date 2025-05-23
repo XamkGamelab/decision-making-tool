@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef88620be16b7246930583e8932a673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceLogger: {fileID: 0}
+  choiceLogger: {fileID: 1468328875}
   questionText: {fileID: 474528500}
   nodeImageDisplay: {fileID: 1094251207}
   returnToMenuButton: {fileID: 345044471}

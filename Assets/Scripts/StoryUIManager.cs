@@ -12,7 +12,7 @@ namespace JAS.MediDeci
 {
     public class StoryUIManager : MonoBehaviour
     {
-        [Header("joo")]
+        [Header("Choiselogger empty gameobject")]
         public ChoiceLogger choiceLogger;
         private string playerId;
 
@@ -93,6 +93,17 @@ namespace JAS.MediDeci
                     if (AudioManager.Instance != null)
                     {
                         AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
+                    }
+
+                    // Log the choice to backend
+                    if (choiceLogger != null)
+                    {
+                        Debug.Log($"Logging choice: {option.optionText} at node {node.nodeId}");
+                        choiceLogger.LogChoice(playerId, option.optionText, node.nodeId);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("ChoiceLogger is not assigned!");
                     }
 
                     if (nextNode != null)
