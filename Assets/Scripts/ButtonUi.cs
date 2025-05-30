@@ -61,13 +61,13 @@ namespace JAS.MediDeci
         public void PlayGame2Button()
         {
             PlayClickSound();
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(4); // Game2
         }
 
         public void PlayGame3Button()
         {
             PlayClickSound();
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(6); // GameTemplate
         }
 
         public void QuitGameButton()
