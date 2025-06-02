@@ -84,5 +84,6 @@ namespace JAS.MediDeci
                 AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
             }
         }
+
     }
 }
