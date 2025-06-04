@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
-  m_Name: Alkutilanne
+  m_Name: S1N26
   m_EditorClassIdentifier: 
-  nodeId: Alkutilanne
-  questionText: "Mik\xE4 on todenn\xE4k\xF6isin seuraava tilanne?"
-  nodeImage: {fileID: -4586572322597978023, guid: f1ece12de286a7a409f9ea19f0e76e8c, type: 3}
+  nodeId: S1N26
+  questionText: "Siirrytte kuljetukseen ja annatte alueelliset adjuvanttil\xE4\xE4kkeet!\nHuomiotte
+    deffan akut/verkkovirran, hapen riitt\xE4vyyden ja kipul\xE4\xE4kkeet."
+  nodeImage: {fileID: 3941026511209084869, guid: f01bcf62ffe80cf4fa2faab433f225ef, type: 3}
   showImage: 1
   options:
-  - optionText: 711
-    nextNode: {fileID: 11400000, guid: 801da7596f452ea4a9f2c442528dbae3, type: 2}
-    isVisible: 1
-  - optionText: Oikea Scenaario
-    nextNode: {fileID: 11400000, guid: 6d85779dc2bd22f4dab58e42a6b27971, type: 2}
+  - optionText: Seuraava
+    nextNode: {fileID: 11400000, guid: 689a121d0c2f27c4fac81cb2ba254f42, type: 2}
     isVisible: 1
   showReturnToMenu: 0

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: S1N28
+  m_EditorClassIdentifier: 
+  nodeId: S1N28
+  questionText: "Rytmi k\xE4\xE4ntyy ja tajunta palaa yhdell\xE4 defibrilaatiolla.
+    Mit\xE4 tulisi nyt harkita?"
+  nodeImage: {fileID: 0}
+  showImage: 0
+  options:
+  - optionText: "Trombolyysi\xE4"
+    nextNode: {fileID: 11400000, guid: 3b1a358700265ff4e9208692815920ef, type: 2}
+    isVisible: 1
+  - optionText: "Lis\xE4\xE4 kaasua"
+    nextNode: {fileID: 11400000, guid: 3b1a358700265ff4e9208692815920ef, type: 2}
+    isVisible: 1
+  - optionText: Tupladeffausta
+    nextNode: {fileID: 11400000, guid: 3b1a358700265ff4e9208692815920ef, type: 2}
+    isVisible: 1
+  - optionText: Alanvaihtoa
+    nextNode: {fileID: 11400000, guid: 3b1a358700265ff4e9208692815920ef, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0

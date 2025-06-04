@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
-  m_Name: Alkutilanne
+  m_Name: S1N25
   m_EditorClassIdentifier: 
-  nodeId: Alkutilanne
-  questionText: "Mik\xE4 on todenn\xE4k\xF6isin seuraava tilanne?"
-  nodeImage: {fileID: -4586572322597978023, guid: f1ece12de286a7a409f9ea19f0e76e8c, type: 3}
+  nodeId: S1N25
+  questionText: "Nostatte virtaa viel\xE4 10mA. Uudet vitaalit: AB-avoin, HT 20,
+    SpO2 96% C-p.60 (tahdistus), RR 128/68, iho kuivunut, paremman v\xE4rinen D-GCS
+    15"
+  nodeImage: {fileID: 3941026511209084869, guid: f01bcf62ffe80cf4fa2faab433f225ef, type: 3}
   showImage: 1
   options:
-  - optionText: 711
-    nextNode: {fileID: 11400000, guid: 801da7596f452ea4a9f2c442528dbae3, type: 2}
-    isVisible: 1
-  - optionText: Oikea Scenaario
-    nextNode: {fileID: 11400000, guid: 6d85779dc2bd22f4dab58e42a6b27971, type: 2}
+  - optionText: Seuraava
+    nextNode: {fileID: 11400000, guid: 68df5ff13b514474185c2b4db11f84b8, type: 2}
     isVisible: 1
   showReturnToMenu: 0

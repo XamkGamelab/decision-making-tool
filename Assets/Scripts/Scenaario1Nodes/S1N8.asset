@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: S1N8
+  m_EditorClassIdentifier: 
+  nodeId: S1N8
+  questionText: "Tulkintasi rytmist\xE4"
+  nodeImage: {fileID: 4997560994236566738, guid: 3ef7b7bff3a87a646856b6dcdfda1fc7, type: 3}
+  showImage: 1
+  options:
+  - optionText: SR+ VES
+    nextNode: {fileID: 11400000, guid: 46dfa8f0ae8fb414ba6d55d8966de1fd, type: 2}
+    isVisible: 1
+  - optionText: Polymorfinen VT
+    nextNode: {fileID: 11400000, guid: 46dfa8f0ae8fb414ba6d55d8966de1fd, type: 2}
+    isVisible: 1
+  - optionText: Mobitz 2 + VES
+    nextNode: {fileID: 11400000, guid: 46dfa8f0ae8fb414ba6d55d8966de1fd, type: 2}
+    isVisible: 1
+  - optionText: Totaaliblokki + VES
+    nextNode: {fileID: 11400000, guid: 46dfa8f0ae8fb414ba6d55d8966de1fd, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0

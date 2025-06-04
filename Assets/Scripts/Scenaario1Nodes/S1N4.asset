@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
-  m_Name: Alkutilanne
+  m_Name: S1N4
   m_EditorClassIdentifier: 
-  nodeId: Alkutilanne
-  questionText: "Mik\xE4 on todenn\xE4k\xF6isin seuraava tilanne?"
-  nodeImage: {fileID: -4586572322597978023, guid: f1ece12de286a7a409f9ea19f0e76e8c, type: 3}
+  nodeId: S1N4
+  questionText: "Onko rytmi s\xE4\xE4nn\xF6llinen?"
+  nodeImage: {fileID: 1210965593534090856, guid: dc9858f4cc8c47447bd6a120ef9870ee, type: 3}
   showImage: 1
   options:
-  - optionText: 711
-    nextNode: {fileID: 11400000, guid: 801da7596f452ea4a9f2c442528dbae3, type: 2}
+  - optionText: "S\xE4\xE4nn\xF6llinen"
+    nextNode: {fileID: 11400000, guid: a90ed2981b3382c40bd3693a0045cffb, type: 2}
     isVisible: 1
-  - optionText: Oikea Scenaario
-    nextNode: {fileID: 11400000, guid: 6d85779dc2bd22f4dab58e42a6b27971, type: 2}
+  - optionText: "Ep\xE4s\xE4\xE4nn\xF6llinen"
+    nextNode: {fileID: 11400000, guid: a90ed2981b3382c40bd3693a0045cffb, type: 2}
     isVisible: 1
   showReturnToMenu: 0

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: S1N21
+  m_EditorClassIdentifier: 
+  nodeId: S1N21
+  questionText: "60mA ja tulos t\xE4ll\xE4inen. Miten edet\xE4\xE4n?"
+  nodeImage: {fileID: -7429580334296095931, guid: 35fd4dc8da2ccb94d83b6d053f4140f0, type: 3}
+  showImage: 1
+  options:
+  - optionText: "Hyv\xE4lt\xE4 n\xE4ytt\xE4\xE4! Nyt ABCDE"
+    nextNode: {fileID: 11400000, guid: 6581676d83e1ad3479e787e186c002da, type: 2}
+    isVisible: 1
+  - optionText: "Ei hyv\xE4, lis\xE4t\xE4\xE4n taajuutta"
+    nextNode: {fileID: 11400000, guid: 6581676d83e1ad3479e787e186c002da, type: 2}
+    isVisible: 1
+  - optionText: "Ei hyv\xE4, lis\xE4t\xE4\xE4n virtaa"
+    nextNode: {fileID: 11400000, guid: 6581676d83e1ad3479e787e186c002da, type: 2}
+    isVisible: 1
+  showReturnToMenu: 0
