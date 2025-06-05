@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// Manages the display and interaction of story nodes in the UI.
@@ -24,12 +25,19 @@ namespace JAS.MediDeci
         [Tooltip("Pool of UI buttons used to represent choices. Set size to maximum expected options per node (e.g., 5).")]
         public List<Button> optionButtons;
 
+        [Header("Feedback UI")]
+        public GameObject feedbackPanel;
+        public TextMeshProUGUI feedbackText;
+        public Button feedbackNextButton;
+
         [Header("Starting Node")]
         public StoryNode startingNode;
         private StoryNode _currentNode;
 
         private void Start()
         {
+            feedbackPanel.SetActive(false);
+
             // If you want the same player ID every time the player reopens the game
             if (!PlayerPrefs.HasKey("PlayerID"))
             {
@@ -105,10 +113,31 @@ namespace JAS.MediDeci
                         Debug.LogWarning("ChoiceLogger is not assigned!");
                     }
 
-                    if (nextNode != null)
-                        LoadNode(nextNode);
+                    // Start delayed feedback + transition coroutine
+                    StartCoroutine(ShowFeedbackThenLoadNext(option.optionText, nextNode));
                 });
             }
+        }
+
+        private IEnumerator ShowFeedbackThenLoadNext(string selectedOption, StoryNode nextNode)
+        {
+            yield return new WaitForSeconds(0.2f); // Delay before showing feedback
+
+            // Temp text, will be changed down the line
+            feedbackText.text = $"Valitsit: {selectedOption}";
+            feedbackPanel.SetActive(true);
+
+            // Remove old listeners
+            feedbackNextButton.onClick.RemoveAllListeners();
+
+            feedbackNextButton.onClick.AddListener(() =>
+            {
+                feedbackPanel.SetActive(false);
+                if (nextNode != null)
+                {
+                    LoadNode(nextNode);
+                }
+            });
         }
 
         /// <summary>

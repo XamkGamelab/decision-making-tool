@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tahdistuselektroodit_0: 6446992976371786985
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

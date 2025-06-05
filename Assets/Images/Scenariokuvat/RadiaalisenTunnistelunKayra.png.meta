@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RadiaalisenTunnistelunKayra_0: -3517900925649667619
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

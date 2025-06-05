@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      QRSKysymys_0: 8101994233210169362
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
