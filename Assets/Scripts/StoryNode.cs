@@ -19,9 +19,6 @@ namespace JAS.MediDeci
         [Tooltip("Optional image to visually support the node's content.")]
         public Sprite nodeImage;
 
-        [Tooltip("If true, the nodeImage will be shown in the UI. True by default.")]
-        public bool showImage = true;
-
         [System.Serializable]
         public class StoryOption
         {
@@ -33,6 +30,9 @@ namespace JAS.MediDeci
 
             [Tooltip("If false, this option will not be shown in the UI.")]
             public bool isVisible = true;
+
+            [Tooltip("If true, this option will be logged and will trigger the feedback panel.")]
+            public bool isLoggable = true;
         }
 
         [Tooltip("List of response options the player can choose from. Can be any length.")]
