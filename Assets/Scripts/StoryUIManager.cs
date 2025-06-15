@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 
-/// <summary>
-/// Manages the display and interaction of story nodes in the UI.
-/// Dynamically loads options based on the current node's data.
-/// </summary>
 namespace JAS.MediDeci
 {
     public class StoryUIManager : MonoBehaviour
@@ -42,9 +38,8 @@ namespace JAS.MediDeci
             if (feedbackGroup == null)
                 feedbackGroup = feedbackPanel.GetComponent<CanvasGroup>();
 
-            feedbackPanel.SetActive(false);         
+            feedbackPanel.SetActive(false);
 
-            // If you want the same player ID every time the player reopens the game
             if (!PlayerPrefs.HasKey("PlayerID"))
             {
                 PlayerPrefs.SetString("PlayerID", System.Guid.NewGuid().ToString());
@@ -52,7 +47,6 @@ namespace JAS.MediDeci
 
             playerId = PlayerPrefs.GetString("PlayerID");
 
-            // Optional: Start background music
             if (BGAudioManager.Instance != null)
             {
                 BGAudioManager.Instance.PlayMusic(BGAudioManager.Instance.gameMusic);
@@ -62,9 +56,6 @@ namespace JAS.MediDeci
             LoadNode(startingNode);
         }
 
-        /// <summary>
-        /// Loads a StoryNode and updates all UI elements accordingly.
-        /// </summary>
         private void LoadNode(StoryNode node)
         {
             _currentNode = node;
@@ -91,13 +82,13 @@ namespace JAS.MediDeci
                 button.onClick.RemoveAllListeners();
             }
 
-            // Apply available options
-            for (int i = 0; i < Mathf.Min(_currentNode.Options.Count, optionButtons.Count); i++)
+            int buttonIndex = 0;
+            for (int i = 0; i < _currentNode.Options.Count && buttonIndex < optionButtons.Count; i++)
             {
                 StoryNode.StoryOption option = _currentNode.Options[i];
                 if (option == null || !option.isVisible) continue;
 
-                Button button = optionButtons[i];
+                Button button = optionButtons[buttonIndex];
                 TextMeshProUGUI textComponent = button.GetComponentInChildren<TextMeshProUGUI>();
 
                 if (textComponent != null)
@@ -105,8 +96,10 @@ namespace JAS.MediDeci
 
                 button.gameObject.SetActive(true);
 
-                // Cache to local variable to avoid closure issues
+                // Cache local variables to avoid closure issues
+                StoryNode.StoryOption capturedOption = option;
                 StoryNode nextNode = option.nextNode;
+
                 button.onClick.AddListener(() =>
                 {
                     if (AudioManager.Instance != null)
@@ -114,41 +107,39 @@ namespace JAS.MediDeci
                         AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
                     }
 
-                    // If loggable, log and show feedback
-                    if (option.isLoggable)
+                    if (capturedOption.isLoggable)
                     {
                         if (choiceLogger != null)
                         {
-                            Debug.Log($"Logging choice: {option.optionText} at node {_currentNode.nodeId}");
-                            choiceLogger.LogChoice(playerId, option.optionText, _currentNode.nodeId);
+                            Debug.Log($"Logging choice: {capturedOption.optionText} at node {_currentNode.nodeId}");
+                            choiceLogger.LogChoice(playerId, capturedOption.optionText, _currentNode.nodeId);
                         }
                         else
                         {
                             Debug.LogWarning("ChoiceLogger is not assigned!");
                         }
 
-                        StartCoroutine(ShowFeedbackThenLoadNext(option.optionText, nextNode));
+                        StartCoroutine(ShowFeedbackThenLoadNext(capturedOption.optionText, nextNode));
                     }
                     else
                     {
-                        // Not loggable: skip feedback and go directly to next node
                         if (nextNode != null)
                         {
                             LoadNode(nextNode);
                         }
                     }
                 });
+
+                buttonIndex++;
             }
         }
 
         private IEnumerator ShowFeedbackThenLoadNext(string selectedOption, StoryNode nextNode)
         {
-            yield return new WaitForSeconds(0.2f); // Delay before showing feedback
+            yield return new WaitForSeconds(0.2f);
 
-            // Temp text, will be changed down the line
             yield return StartCoroutine(AnimateFeedbackIn($"Valitsit: {selectedOption}"));
 
-            // Remove old listeners
             feedbackNextButton.onClick.RemoveAllListeners();
             feedbackNextButton.onClick.AddListener(() =>
             {
@@ -165,14 +156,11 @@ namespace JAS.MediDeci
 
         private IEnumerator ResizeQuestionTextAndResetScroll()
         {
-            // Wait one frame for layout to update
             yield return null;
 
-            // Resize the RectTransform height to fit the preferred height of the text
             float preferredHeight = questionText.preferredHeight;
             questionTextRect.sizeDelta = new Vector2(questionTextRect.sizeDelta.x, preferredHeight);
 
-            // Reset scroll to top
             if (questionScrollRect != null)
             {
                 questionScrollRect.verticalNormalizedPosition = 1f;
@@ -228,9 +216,6 @@ namespace JAS.MediDeci
             onComplete?.Invoke();
         }
 
-        /// <summary>
-        /// Returns the player to the main menu scene.
-        /// </summary>
         private void ReturnToMenu()
         {
             if (AudioManager.Instance != null)
