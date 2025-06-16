@@ -15,9 +15,9 @@ MonoBehaviour:
   nodeId: S1N9
   questionText: 
   nodeImage: {fileID: -1410663752167294367, guid: ebccbcbd60898c14f9e0dc6b3260415f, type: 3}
-  showImage: 1
   options:
   - optionText: Seuraava
     nextNode: {fileID: 11400000, guid: 4288eb7a497a0c54a901f4c4964824f7, type: 2}
     isVisible: 1
+    isLoggable: 0
   showReturnToMenu: 0

@@ -18,9 +18,9 @@ MonoBehaviour:
     lis\xE4\xE4ntyneen automatian aiheuttamia kammiosis\xE4ly\xF6ntej\xE4 bigeminia-moodissa
     (sin)."
   nodeImage: {fileID: 9142649396422040973, guid: 44d4f2d0158b4c248b0e4b42da922193, type: 3}
-  showImage: 1
   options:
   - optionText: Seuraava
     nextNode: {fileID: 11400000, guid: 1d61035abaf28d345a999c35f382081a, type: 2}
     isVisible: 1
+    isLoggable: 0
   showReturnToMenu: 0

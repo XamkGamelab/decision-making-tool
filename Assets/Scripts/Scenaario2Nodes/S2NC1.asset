@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: S2NC1
+  m_EditorClassIdentifier: 
+  nodeId: S2NC1
+  questionText: "Kaveri kertoo, ett\xE4 se otti jotain tommosesta ruiskusta eik\xE4
+    se ole aikaisemmin semmosta ottanut. En tied\xE4 mit\xE4 siin\xE4 on.\n\nYmp\xE4rist\xF6:
+    perussiisti nuorten k\xE4mpp\xE4, ei avoimesti huumeita/v\xE4lineit\xE4 n\xE4kyvill\xE4,
+    ruisku lattialla, jossa hieman verta ruiskun p\xE4\xE4ss\xE4"
+  nodeImage: {fileID: 0}
+  options:
+  - optionText: "Siirryt eteenp\xE4in teht\xE4v\xE4ss\xE4"
+    nextNode: {fileID: 11400000, guid: b8a5557f4fe827a41b4a4f2156e36eae, type: 2}
+    isVisible: 1
+    isLoggable: 0
+  showReturnToMenu: 0

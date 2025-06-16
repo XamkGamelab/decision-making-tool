@@ -18,9 +18,9 @@ MonoBehaviour:
     oikea kammio-ongelma? Sykkeen nosto lis\xE4\xE4 hapentarvetta, mutta matala syke
     aiheuttaa sokkia."
   nodeImage: {fileID: 3972345813689006746, guid: 68c2ea50e6807c74398dd42360ec3059, type: 3}
-  showImage: 1
   options:
   - optionText: Seuraava
     nextNode: {fileID: 11400000, guid: c86d54344cfb26f4c8edad493b512253, type: 2}
     isVisible: 1
+    isLoggable: 0
   showReturnToMenu: 0

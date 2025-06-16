@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
-  m_Name: S1N19
+  m_Name: S2NG2
   m_EditorClassIdentifier: 
-  nodeId: S1N19
-  questionText: 
-  nodeImage: {fileID: 5045836601609855261, guid: cb90def992b78ef429cba52f057b5c00, type: 3}
+  nodeId: S2NG2
+  questionText: "L\xE4hdet potilaan kanssa p\xE4ivystykseen C-kiirrellisyydell\xE4.
+    Valmistaudut kuljetukseen my\xF6s vet\xE4m\xE4ll\xE4 uuden annoksen naloksonia
+    valmiiksi ruiskuun."
+  nodeImage: {fileID: 0}
   options:
   - optionText: Seuraava
-    nextNode: {fileID: 11400000, guid: 709052e4897b8f540abb43fed0167374, type: 2}
+    nextNode: {fileID: 11400000, guid: b82fd53472db58446835efae22097935, type: 2}
     isVisible: 1
     isLoggable: 0
   showReturnToMenu: 0

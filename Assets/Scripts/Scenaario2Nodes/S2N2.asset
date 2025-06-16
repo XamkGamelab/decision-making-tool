@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: S2N2
+  m_EditorClassIdentifier: 
+  nodeId: S2N2
+  questionText: "Ensiarviossa \nA: hengitys rauhallista, p\xE4\xE4 hyv\xE4ss\xE4
+    asennossa\nB: Puhuu yksitt\xE4isi\xE4 sanoja, hengitys vaikuttaa normaalilta\nC:
+    Rad + tasainen ja iho l\xE4mmin ja kuiva"
+  nodeImage: {fileID: 0}
+  options:
+  - optionText: Teet tarkennetun tilanarvion
+    nextNode: {fileID: 11400000, guid: 37c97da057d2928419f338835bfd0045, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  - optionText: "Puhuttelet potilasta ja kysyt henkil\xF6tunnuksen"
+    nextNode: {fileID: 11400000, guid: 3ecb0ea07e07bb14388ad5040d6872ce, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  - optionText: "Pyyd\xE4n ty\xF6paria arvioimaan tajunnantasoa"
+    nextNode: {fileID: 11400000, guid: 3ecb0ea07e07bb14388ad5040d6872ce, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  - optionText: "H\xE4lyt\xE4n lis\xE4apua"
+    nextNode: {fileID: 11400000, guid: 935310161680e0746a6e38c7b3bc351a, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  showReturnToMenu: 0

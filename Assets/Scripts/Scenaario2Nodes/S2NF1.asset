@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: S2NF1
+  m_EditorClassIdentifier: 
+  nodeId: S2NF1
+  questionText: "Potilas alkaa her\xE4ilem\xE4\xE4n ja tajunnan taso nousemaan. Vastailee
+    kysymyksiin jo lausein ja ihmettelee mit\xE4 on tapahtunut."
+  nodeImage: {fileID: 0}
+  options:
+  - optionText: "L\xE4hdet potilaan kanssa p\xE4ivystykseen."
+    nextNode: {fileID: 11400000, guid: 5b2186225b1449545ae6b524fcc40c6e, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  - optionText: X-81
+    nextNode: {fileID: 11400000, guid: 95d9047e06ad7fb408ad6ea8e90576b2, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  - optionText: X-44
+    nextNode: {fileID: 11400000, guid: 95d9047e06ad7fb408ad6ea8e90576b2, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  showReturnToMenu: 0
