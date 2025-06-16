@@ -16,9 +16,9 @@ MonoBehaviour:
   questionText: "-Radialiksen tunnustelu\n-pletysmografik\xE4yr\xE4 (SpO2)\n-etCO2
     (nousee)\n-ultra"
   nodeImage: {fileID: -3517900925649667619, guid: 78ed1c0f1216de2429d423a6cb94cd95, type: 3}
-  showImage: 1
   options:
   - optionText: Seuraava
     nextNode: {fileID: 11400000, guid: af43900df11ef3e4ab0f1152ddc5a8ec, type: 2}
     isVisible: 1
+    isLoggable: 0
   showReturnToMenu: 0

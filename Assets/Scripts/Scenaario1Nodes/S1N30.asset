@@ -16,9 +16,9 @@ MonoBehaviour:
   questionText: "Potillaalla oli siis hidas syke ja h\xE4n oli selke\xE4sti oireileva
     = bradykardia-algoritmi. Matala RR, tajunta laskenut, iskemiaoireit = ep\xE4stabiili."
   nodeImage: {fileID: -7366345113041820975, guid: 77323ee2d38fd644d9223882b72bc5a5, type: 3}
-  showImage: 1
   options:
   - optionText: Seuraava
     nextNode: {fileID: 11400000, guid: 85816f8ed6df7384cb6da913f21b99b0, type: 2}
     isVisible: 1
+    isLoggable: 0
   showReturnToMenu: 0

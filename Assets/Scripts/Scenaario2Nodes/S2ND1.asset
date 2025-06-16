@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e7bd6d318d924b9733a0233c1eadb, type: 3}
+  m_Name: S2ND1
+  m_EditorClassIdentifier: 
+  nodeId: S2ND1
+  questionText: "Tajunnan taso laskenut, ruisku lattialla, jossa ollut ep\xE4m\xE4\xE4r\xE4ist\xE4
+    nestett\xE4. Mit\xE4 teet seuraavaksi?"
+  nodeImage: {fileID: 0}
+  options:
+  - optionText: "Olet ep\xE4varma ja kysyt ty\xF6parilta"
+    nextNode: {fileID: 11400000, guid: 8550d6d825973cb43b8c5fbf85ede91e, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  - optionText: "Pause point ja teet ty\xF6diagnoosin"
+    nextNode: {fileID: 11400000, guid: 8550d6d825973cb43b8c5fbf85ede91e, type: 2}
+    isVisible: 1
+    isLoggable: 1
+  showReturnToMenu: 0

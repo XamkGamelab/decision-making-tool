@@ -15,9 +15,9 @@ MonoBehaviour:
   nodeId: S1N13
   questionText: "Saatte ohjeeksi vakauttaa potilaan tilan ja kuljettaa angiop\xF6yd\xE4lle"
   nodeImage: {fileID: 0}
-  showImage: 0
   options:
   - optionText: Seuraava
     nextNode: {fileID: 11400000, guid: 1e6e119eaf674764a8dfc7cb1fe8eeec, type: 2}
     isVisible: 1
+    isLoggable: 0
   showReturnToMenu: 0

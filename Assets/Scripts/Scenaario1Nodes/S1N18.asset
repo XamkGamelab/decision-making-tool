@@ -15,9 +15,9 @@ MonoBehaviour:
   nodeId: S1N18
   questionText: Molemmat ovat ok, mutta A-P suunta yleisesti suositellumpi
   nodeImage: {fileID: 0}
-  showImage: 0
   options:
   - optionText: Seuraava
     nextNode: {fileID: 11400000, guid: 0fc5a8efd677ffc4587a65f1b79f1d71, type: 2}
     isVisible: 1
+    isLoggable: 0
   showReturnToMenu: 0

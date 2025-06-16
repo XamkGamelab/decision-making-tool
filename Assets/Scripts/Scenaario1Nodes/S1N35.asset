@@ -15,9 +15,9 @@ MonoBehaviour:
   nodeId: S1N35
   questionText: No mutta ei auttanut. Siirryttiin ulkoiseen tahdistukseen
   nodeImage: {fileID: 6333464531648379117, guid: 0ade7bca4866735419d1aa371ae94402, type: 3}
-  showImage: 1
   options:
   - optionText: Seuraava
     nextNode: {fileID: 11400000, guid: b82fd53472db58446835efae22097935, type: 2}
     isVisible: 1
+    isLoggable: 0
   showReturnToMenu: 0

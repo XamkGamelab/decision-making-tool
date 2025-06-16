@@ -18,18 +18,21 @@ MonoBehaviour:
     seuraavissa D- GCS 14, b-gluc 6,5 E- ei ihomuutoksia, a.fem +/+, vatsa pehme\xE4,
     Ttymp 36,2. Mit\xE4 seuraavaksi?"
   nodeImage: {fileID: 6259152167058509060, guid: b28b1ec5556e78844869aca6b555131e, type: 3}
-  showImage: 1
   options:
   - optionText: "O2-lis\xE4 maskilla"
     nextNode: {fileID: 11400000, guid: f140c15846585b74d985e626f3b23401, type: 2}
     isVisible: 1
+    isLoggable: 1
   - optionText: Iv-yhteys
     nextNode: {fileID: 11400000, guid: f140c15846585b74d985e626f3b23401, type: 2}
     isVisible: 1
+    isLoggable: 1
   - optionText: "Monikytkent\xE4inen EKG"
     nextNode: {fileID: 11400000, guid: f140c15846585b74d985e626f3b23401, type: 2}
     isVisible: 1
+    isLoggable: 1
   - optionText: "Kaikki olisi hyv\xE4"
     nextNode: {fileID: 11400000, guid: f140c15846585b74d985e626f3b23401, type: 2}
     isVisible: 1
+    isLoggable: 1
   showReturnToMenu: 0
