@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 
 namespace JAS.MediDeci
 {
-    public class Scenechanger : MonoBehaviour
+    public class SceneChanger : MonoBehaviour
     {
         public void BackToMenu()
         {
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

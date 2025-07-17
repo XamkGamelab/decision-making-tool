@@ -9,18 +9,20 @@ namespace JAS.MediDeci
 {
     public class StoryUIManager : MonoBehaviour
     {
-        [Header("Choiselogger empty gameobject")]
+        [Header("Managers & Data")]
         public ChoiceLogger choiceLogger;
         private string playerId;
 
-        [Header("UI References")]
+        [Header("UI Elements")]
         public TextMeshProUGUI questionText;
         public RectTransform questionTextRect;
         public ScrollRect questionScrollRect;
         public Image nodeImageDisplay;
+        public RectTransform questionContainer;
         public Button returnToMenuButton;
+        public RectTransform returnToMenuRect;
 
-        [Tooltip("Pool of UI buttons used to represent choices. Set size to maximum expected options per node (e.g., 5).")]
+        [Header("Option Buttons")]
         public List<Button> optionButtons;
 
         [Header("Feedback UI")]
@@ -29,199 +31,245 @@ namespace JAS.MediDeci
         public TextMeshProUGUI feedbackText;
         public Button feedbackNextButton;
 
-        [Header("Starting Node")]
+        [Header("Initial Node")]
         public StoryNode startingNode;
+
+        // Private state
         private StoryNode _currentNode;
+        private Vector2 _feedbackOriginalPos;
+        private Vector2 _returnToMenuOriginalPos;
+
+        // Animation constants
+        private const float SlideDuration = 0.14f;
+        private const float ButtonPopDuration = 0.2f;
+        private const float ButtonStagger = 0.05f;
 
         private void Start()
         {
-            if (feedbackGroup == null)
-                feedbackGroup = feedbackPanel.GetComponent<CanvasGroup>();
+            _feedbackOriginalPos = feedbackPanel.GetComponent<RectTransform>().anchoredPosition;
+            _returnToMenuOriginalPos = returnToMenuRect.anchoredPosition;
 
             feedbackPanel.SetActive(false);
+            returnToMenuRect.gameObject.SetActive(false);
 
-            if (!PlayerPrefs.HasKey("PlayerID"))
-            {
-                PlayerPrefs.SetString("PlayerID", System.Guid.NewGuid().ToString());
-            }
-
-            playerId = PlayerPrefs.GetString("PlayerID");
+            playerId = PlayerPrefs.GetString("PlayerID", System.Guid.NewGuid().ToString());
+            PlayerPrefs.SetString("PlayerID", playerId);
 
             if (BGAudioManager.Instance != null)
-            {
                 BGAudioManager.Instance.PlayMusic(BGAudioManager.Instance.gameMusic);
-            }
 
             returnToMenuButton.onClick.AddListener(ReturnToMenu);
+
             LoadNode(startingNode);
+            StartCoroutine(AnimateInitialButtons());
         }
 
+        /// <summary>Loads and sets up a new node.</summary>
         private void LoadNode(StoryNode node)
         {
             _currentNode = node;
-            questionText.text = _currentNode.questionText;
-
+            questionText.text = node.questionText;
             StartCoroutine(ResizeQuestionTextAndResetScroll());
 
-            if (_currentNode.nodeImage != null)
-            {
-                nodeImageDisplay.gameObject.SetActive(true);
-                nodeImageDisplay.sprite = _currentNode.nodeImage;
-            }
-            else
-            {
-                nodeImageDisplay.gameObject.SetActive(false);
-            }
+            nodeImageDisplay.gameObject.SetActive(node.nodeImage != null);
+            if (node.nodeImage != null)
+                nodeImageDisplay.sprite = node.nodeImage;
 
-            returnToMenuButton.gameObject.SetActive(_currentNode.showReturnToMenu);
-
-            // Reset all buttons
-            foreach (Button button in optionButtons)
+            returnToMenuRect.gameObject.SetActive(node.showReturnToMenu);
+            if (node.showReturnToMenu)
             {
-                button.gameObject.SetActive(false);
-                button.onClick.RemoveAllListeners();
+                Vector2 offscreenRight = _returnToMenuOriginalPos + Vector2.right * Screen.width;
+                returnToMenuRect.anchoredPosition = offscreenRight;
+                StartCoroutine(LerpPosition(returnToMenuRect, offscreenRight, _returnToMenuOriginalPos, SlideDuration));
             }
 
-            int buttonIndex = 0;
-            for (int i = 0; i < _currentNode.Options.Count && buttonIndex < optionButtons.Count; i++)
+            // Prepare buttons
+            foreach (Button btn in optionButtons)
             {
-                StoryNode.StoryOption option = _currentNode.Options[i];
+                btn.gameObject.SetActive(false);
+                btn.onClick.RemoveAllListeners();
+                btn.transform.localScale = Vector3.zero;
+            }
+
+            // Assign visible options
+            for (int i = 0; i < Mathf.Min(node.Options.Count, optionButtons.Count); i++)
+            {
+                StoryNode.StoryOption option = node.Options[i];
                 if (option == null || !option.isVisible) continue;
 
-                Button button = optionButtons[buttonIndex];
-                TextMeshProUGUI textComponent = button.GetComponentInChildren<TextMeshProUGUI>();
+                Button button = optionButtons[i];
+                button.GetComponentInChildren<TextMeshProUGUI>().text = option.optionText;
 
-                if (textComponent != null)
-                    textComponent.text = option.optionText;
-
-                button.gameObject.SetActive(true);
-
-                // Cache local variables to avoid closure issues
-                StoryNode.StoryOption capturedOption = option;
                 StoryNode nextNode = option.nextNode;
 
                 button.onClick.AddListener(() =>
                 {
                     if (AudioManager.Instance != null)
-                    {
                         AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
-                    }
 
-                    if (capturedOption.isLoggable)
-                    {
-                        if (choiceLogger != null)
-                        {
-                            Debug.Log($"Logging choice: {capturedOption.optionText} at node {_currentNode.nodeId}");
-                            choiceLogger.LogChoice(playerId, capturedOption.optionText, _currentNode.nodeId);
-                        }
-                        else
-                        {
-                            Debug.LogWarning("ChoiceLogger is not assigned!");
-                        }
+                    if (option.isLoggable && choiceLogger != null)
+                        choiceLogger.LogChoice(playerId, option.optionText, _currentNode.nodeId);
 
-                        StartCoroutine(ShowFeedbackThenLoadNext(capturedOption.optionText, nextNode));
-                    }
-                    else
-                    {
-                        if (nextNode != null)
-                        {
-                            LoadNode(nextNode);
-                        }
-                    }
+                    if (option.isLoggable)
+                        StartCoroutine(ShowFeedbackThenLoadNext(option.optionText, nextNode));
+                    else if (nextNode != null)
+                        StartCoroutine(TransitionToNextNode(nextNode));
                 });
-
-                buttonIndex++;
             }
         }
 
         private IEnumerator ShowFeedbackThenLoadNext(string selectedOption, StoryNode nextNode)
         {
             yield return new WaitForSeconds(0.2f);
-
             yield return StartCoroutine(AnimateFeedbackIn($"Valitsit: {selectedOption}"));
 
+            feedbackNextButton.interactable = true;
             feedbackNextButton.onClick.RemoveAllListeners();
             feedbackNextButton.onClick.AddListener(() =>
             {
+                feedbackNextButton.interactable = false;
+                SetAllButtonsInteractable(false);
+
                 StartCoroutine(AnimateFeedbackOut(() =>
                 {
-                    feedbackPanel.SetActive(false);
                     if (nextNode != null)
-                    {
-                        LoadNode(nextNode);
-                    }
+                        StartCoroutine(TransitionToNextNode(nextNode));
                 }));
             });
+        }
+
+        private IEnumerator TransitionToNextNode(StoryNode nextNode)
+        {
+            Vector2 startPos = questionContainer.anchoredPosition;
+            Vector2 offscreenLeft = startPos + Vector2.left * Screen.width;
+            Vector2 offscreenRight = startPos + Vector2.right * Screen.width;
+
+            SetAllButtonsInteractable(false);
+            feedbackNextButton.interactable = false;
+
+            // Optional: Slide out return to menu
+            if (returnToMenuRect.gameObject.activeSelf)
+            {
+                Vector2 offscreenReturn = _returnToMenuOriginalPos + Vector2.right * Screen.width;
+                yield return LerpPosition(returnToMenuRect, _returnToMenuOriginalPos, offscreenReturn, SlideDuration);
+                returnToMenuRect.gameObject.SetActive(false);
+            }
+
+            // Slide out question container
+            yield return LerpPosition(questionContainer, startPos, offscreenLeft, SlideDuration);
+
+            // Clean current
+            feedbackPanel.SetActive(false);
+            foreach (var btn in optionButtons) btn.gameObject.SetActive(false);
+
+            // Slide in new node
+            questionContainer.anchoredPosition = offscreenRight;
+            LoadNode(nextNode);
+            yield return LerpPosition(questionContainer, offscreenRight, startPos, SlideDuration);
+
+            // Pop-in buttons
+            for (int i = 0; i < Mathf.Min(_currentNode.Options.Count, optionButtons.Count); i++)
+            {
+                StoryNode.StoryOption option = _currentNode.Options[i];
+                if (option == null || !option.isVisible) continue;
+
+                StartCoroutine(AnimateButtonPop(optionButtons[i].gameObject, i * ButtonStagger));
+            }
+        }
+
+        private IEnumerator AnimateButtonPop(GameObject obj, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            obj.SetActive(true);
+            Button btn = obj.GetComponent<Button>();
+            btn.interactable = false;
+
+            Transform tf = obj.transform;
+            Vector3 overshoot = Vector3.one * 1.1f;
+
+            float t = 0;
+            while (t < ButtonPopDuration)
+            {
+                t += Time.deltaTime;
+                tf.localScale = Vector3.Lerp(Vector3.zero, overshoot, t / ButtonPopDuration);
+                yield return null;
+            }
+
+            t = 0;
+            while (t < ButtonPopDuration * 0.5f)
+            {
+                t += Time.deltaTime;
+                tf.localScale = Vector3.Lerp(overshoot, Vector3.one, t / (ButtonPopDuration * 0.5f));
+                yield return null;
+            }
+
+            tf.localScale = Vector3.one;
+            btn.interactable = true;
         }
 
         private IEnumerator ResizeQuestionTextAndResetScroll()
         {
             yield return null;
-
-            float preferredHeight = questionText.preferredHeight;
-            questionTextRect.sizeDelta = new Vector2(questionTextRect.sizeDelta.x, preferredHeight);
-
-            if (questionScrollRect != null)
-            {
-                questionScrollRect.verticalNormalizedPosition = 1f;
-            }
+            float height = questionText.preferredHeight;
+            questionTextRect.sizeDelta = new Vector2(questionTextRect.sizeDelta.x, height);
+            questionScrollRect.verticalNormalizedPosition = 1f;
         }
 
         private IEnumerator AnimateFeedbackIn(string text)
         {
             feedbackText.text = text;
+            RectTransform rect = feedbackPanel.GetComponent<RectTransform>();
+
+            Vector2 from = _feedbackOriginalPos + Vector2.down * rect.rect.height;
+            rect.anchoredPosition = from;
             feedbackPanel.SetActive(true);
 
-            if (feedbackGroup == null)
-                feedbackGroup = feedbackPanel.GetComponent<CanvasGroup>();
-
-            feedbackGroup.alpha = 0;
-            feedbackPanel.transform.localScale = Vector3.one * 0.8f;
-
-            float duration = 0.2f;
-            float t = 0;
-
-            while (t < duration)
-            {
-                t += Time.deltaTime;
-                float p = t / duration;
-                feedbackGroup.alpha = Mathf.Lerp(0, 1, p);
-                feedbackPanel.transform.localScale = Vector3.Lerp(Vector3.one * 0.8f, Vector3.one, p);
-                yield return null;
-            }
-
-            feedbackGroup.alpha = 1;
-            feedbackPanel.transform.localScale = Vector3.one;
+            yield return LerpPosition(rect, from, _feedbackOriginalPos, 0.15f);
         }
 
         private IEnumerator AnimateFeedbackOut(System.Action onComplete)
         {
-            float duration = 0.2f;
+            onComplete?.Invoke();
+            yield return null;
+        }
+
+        private IEnumerator AnimateInitialButtons()
+        {
+            yield return null;
+
+            for (int i = 0; i < Mathf.Min(_currentNode.Options.Count, optionButtons.Count); i++)
+            {
+                StoryNode.StoryOption option = _currentNode.Options[i];
+                if (option == null || !option.isVisible) continue;
+
+                StartCoroutine(AnimateButtonPop(optionButtons[i].gameObject, i * ButtonStagger));
+            }
+        }
+
+        private IEnumerator LerpPosition(RectTransform rect, Vector2 from, Vector2 to, float duration)
+        {
             float t = 0;
-
-            Vector3 startScale = feedbackPanel.transform.localScale;
-
             while (t < duration)
             {
                 t += Time.deltaTime;
-                float p = t / duration;
-                feedbackGroup.alpha = Mathf.Lerp(1, 0, p);
-                feedbackPanel.transform.localScale = Vector3.Lerp(startScale, Vector3.one * 0.8f, p);
+                rect.anchoredPosition = Vector2.Lerp(from, to, t / duration);
                 yield return null;
             }
 
-            feedbackGroup.alpha = 0;
-            feedbackPanel.transform.localScale = Vector3.one * 0.8f;
+            rect.anchoredPosition = to;
+        }
 
-            onComplete?.Invoke();
+        private void SetAllButtonsInteractable(bool interactable)
+        {
+            foreach (var btn in optionButtons)
+                btn.interactable = interactable;
         }
 
         private void ReturnToMenu()
         {
             if (AudioManager.Instance != null)
-            {
                 AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
-            }
 
             SceneManager.LoadScene(0);
         }
