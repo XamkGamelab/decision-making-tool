@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animWrapper: {fileID: 643288518}
+  text: {fileID: 1383384540}
   animScale: 0.9
   animDuration: 0.08
 --- !u!114 &193071549
@@ -762,7 +763,7 @@ MonoBehaviour:
   nodeImageDisplay: {fileID: 1148217253}
   questionContainer: {fileID: 1477647492}
   returnToMenuButton: {fileID: 1805961152}
-  returnToMenuRect: {fileID: 0}
+  returnToMenuRect: {fileID: 1805961151}
   optionButtons:
   - {fileID: 2049026559}
   - {fileID: 193071549}
@@ -2277,6 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animWrapper: {fileID: 1870151710}
+  text: {fileID: 729544070}
   animScale: 0.9
   animDuration: 0.08
 --- !u!114 &938996619
@@ -3338,6 +3340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animWrapper: {fileID: 660599060}
+  text: {fileID: 1002438403}
   animScale: 0.9
   animDuration: 0.08
 --- !u!114 &1305806461
@@ -4320,6 +4323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animWrapper: {fileID: 0}
+  text: {fileID: 0}
   animScale: 1.1
   animDuration: 0.1
 --- !u!1 &1581766449
@@ -5825,6 +5829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animWrapper: {fileID: 1310736035}
+  text: {fileID: 1789203455}
   animScale: 0.9
   animDuration: 0.08
 --- !u!1 &2071390771
