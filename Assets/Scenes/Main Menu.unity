@@ -2083,8 +2083,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c5c501788814648a1494daa6ebce85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usernameInput: {fileID: 1611391239}
-  yearInput: {fileID: 654373091}
 --- !u!4 &449175862
 Transform:
   m_ObjectHideFlags: 0
@@ -7889,8 +7887,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1746240411}
-        m_TargetAssemblyTypeName: JAS.MediDeci.ButtonUi, Assembly-CSharp
-        m_MethodName: QuitQameButton
+        m_TargetAssemblyTypeName: JAS.MediDeci.ButtonUI, Assembly-CSharp
+        m_MethodName: QuitGameButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

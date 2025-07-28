@@ -19,6 +19,7 @@ namespace JAS.MediDeci
         public void QuitGameButton()
         {
             PlayClickSound();
+            Debug.Log("You have quit the game");
             Application.Quit();
         }
 
