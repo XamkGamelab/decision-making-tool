@@ -52,6 +52,8 @@ namespace JAS.MediDeci
             feedbackPanel.SetActive(false);
             returnToMenuRect.gameObject.SetActive(false);
 
+            var _ = ServerManager.Instance;
+
             playerId = PlayerPrefs.GetString("PlayerID", System.Guid.NewGuid().ToString());
             PlayerPrefs.SetString("PlayerID", playerId);
 
@@ -107,8 +109,22 @@ namespace JAS.MediDeci
                     if (AudioManager.Instance != null)
                         AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
 
-                    if (option.isLoggable && choiceLogger != null)
-                        choiceLogger.LogChoice(playerId, option.optionText, _currentNode.nodeId);
+                    if (option.isLoggable)
+                    {
+                        if (choiceLogger == null)
+                        {
+                            Debug.LogWarning("ChoiceLogger is null!");
+                        }
+                        else if (ServerManager.Instance == null)
+                        {
+                            Debug.LogWarning("ServerManager.Instance is null!");
+                        }
+                        else
+                        {
+                            choiceLogger.LogChoice(option.optionText, _currentNode.nodeId);
+                        }
+                    }
+                        
 
                     if (option.isLoggable)
                         StartCoroutine(ShowFeedbackThenLoadNext(option.optionText, nextNode));

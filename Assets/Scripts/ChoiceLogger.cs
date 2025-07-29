@@ -1,44 +1,49 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using JAS.MediDeci;
 
-public class ChoiceLogger : MonoBehaviour
+namespace JAS.MediDeci
 {
-    public void LogChoice(string playerId, string choiceText, string sceneName)
-    {
-        StartCoroutine(SendChoice(playerId, choiceText, sceneName));
-    }
 
-    private IEnumerator SendChoice(string playerId, string choiceText, string sceneName)
+    public class ChoiceLogger : MonoBehaviour
     {
-        string url = "http://localhost:3000/save-choice";
-
-        string json = JsonUtility.ToJson(new ChoiceData
+        /// <summary>
+        /// Log a choice to the server
+        /// </summary>
+        /// <param name="choiceText">The choice that was made</param>
+        /// <param name="sceneName">The scene where the choice was made</param>
+        public void LogChoice(string choiceText, string sceneName)
         {
-            player_id = playerId,
-            choice_text = choiceText,
-            scene_name = sceneName
-        });
+            // Check if user is registered
+            if (!ServerManager.Instance.IsUserRegistered())
+            {
+                Debug.LogError("Cannot log choice: User not registered!");
+                return;
+            }
 
-        var request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+            Debug.Log($"Logging choice: '{choiceText}' in scene '{sceneName}'");
 
-        yield return request.SendWebRequest();
+            ServerManager.Instance.LogChoice(choiceText, sceneName, OnChoiceLogged);
+        }
 
-        if (request.result != UnityWebRequest.Result.Success)
-            Debug.Log("Error: " + request.error);
-        else
-            Debug.Log("Choice saved!");
-    }
+        private void OnChoiceLogged(bool success)
+        {
+            if (success)
+            {
+                Debug.Log("Choice successfully logged to server!");
+            }
+            else
+            {
+                Debug.LogError("Failed to log choice to server!");
+            }
+        }
 
-    [System.Serializable]
-    public class ChoiceData
-    {
-        public string player_id;
-        public string choice_text;
-        public string scene_name;
+        // Legacy method for backward compatibility - you can remove this if not needed
+        public void LogChoice(string playerId, string choiceText, string sceneName)
+        {
+            Debug.LogWarning("Using legacy LogChoice method. Player ID will be ignored, using registered user instead.");
+            LogChoice(choiceText, sceneName);
+        }
     }
 }
