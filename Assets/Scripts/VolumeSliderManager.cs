@@ -22,7 +22,7 @@ namespace JAS.MediDeci
         private const int minVolume = 0;
         private const int maxVolume = 10;
 
-        void Start()
+        private void Start()
         {
             // Enforce snapping
             musicSlider.wholeNumbers = true;
@@ -36,6 +36,9 @@ namespace JAS.MediDeci
             // Load saved values
             musicSlider.value = PlayerPrefs.GetInt("MusicVolume", 10);
             soundSlider.value = PlayerPrefs.GetInt("SoundVolume", 10);
+
+            musicLabel.text = PlayerPrefs.GetInt("MusicVolume").ToString();
+            soundLabel.text = PlayerPrefs.GetInt("SoundVolume").ToString();
 
             ApplyVolume(Mathf.RoundToInt(musicSlider.value), musicParameter);
             ApplyVolume(Mathf.RoundToInt(soundSlider.value), soundParameter);
