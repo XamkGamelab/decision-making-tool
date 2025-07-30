@@ -287,7 +287,7 @@ namespace JAS.MediDeci
             if (AudioManager.Instance != null)
                 AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
 
-            SceneManager.LoadScene(2); //Tässä vain QA:ta varten 2 on vanha menu, 0 uusi
+            SceneManager.LoadScene(0); //Testausta varten. 2 on vanha menu, 0 uusi
         }
     }
 }
