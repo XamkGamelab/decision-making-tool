@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4613,6 +4613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1827268370}
   - component: {fileID: 1827268371}
+  - component: {fileID: 1827268372}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -4647,6 +4648,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c5c501788814648a1494daa6ebce85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1827268372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827268369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e21a32cd33fd648bf0d050c8e8896c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderValueKey: SavedYear
+  inputTextKey: SavedName
+  panel: {fileID: 903580112}
 --- !u!1 &1857858428
 GameObject:
   m_ObjectHideFlags: 0
