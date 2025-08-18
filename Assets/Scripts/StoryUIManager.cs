@@ -58,7 +58,7 @@ namespace JAS.MediDeci
             PlayerPrefs.SetString("PlayerID", playerId);
 
             if (BGAudioManager.Instance != null)
-                BGAudioManager.Instance.PlayMusic(BGAudioManager.Instance.gameMusic);
+                BGAudioManager.Instance.PlayMusic(BGAudioManager.Instance.music);
 
             returnToMenuButton.onClick.AddListener(ReturnToMenu);
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 namespace JAS.MediDeci
@@ -10,13 +11,10 @@ namespace JAS.MediDeci
     {
         [Header("Music Clips")]
         [Tooltip("Music for the main menu scene.")]
-        public AudioClip mainMenuMusic;
+        public AudioClip music;
 
-        [Tooltip("Music for the game scene.")]
-        public AudioClip gameMusic;
         private AudioSource _audioSource;
 
-        // Optional: Expose current music clip for inspection/debugging
         public AudioClip CurrentClip => _audioSource != null ? _audioSource.clip : null;
 
         protected override void Awake()
@@ -44,21 +42,7 @@ namespace JAS.MediDeci
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            // Map scene name to audio clips
-            switch (scene.name)
-            {
-                case "Main Menu":
-                    PlayMusicSafe(mainMenuMusic);
-                    break;
-
-                case "Testi": // Replace with actual gameplay scene name(s)
-                    PlayMusicSafe(gameMusic);
-                    break;
-
-                default:
-                    StopMusic();
-                    break;
-            }
+            PlayMusicSafe(music);
         }
 
         public void PlayMusic(AudioClip clip)
