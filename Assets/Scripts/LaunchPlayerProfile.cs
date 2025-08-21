@@ -11,8 +11,8 @@ namespace JAS.MediDeci
 
         [SerializeField] private GameObject panel;
 
-        public Button button;
-        public GameObject exitButton;
+        public Button saveButton;
+        public Button exitButton;
 
         private void Start()
         {
@@ -20,16 +20,16 @@ namespace JAS.MediDeci
                 !PlayerPrefs.HasKey(inputTextKey))
             {
                 panel.SetActive(true);
-                exitButton.SetActive(false);
+                exitButton.interactable = false;
 
-                button.onClick.AddListener(() =>
+                saveButton.onClick.AddListener(() =>
                 {
-                    exitButton.SetActive(true);
+                    exitButton.interactable = true;
                 });
             }
             else
             {
-                exitButton.SetActive(true);
+                exitButton.interactable = true;
             }
         }
     }

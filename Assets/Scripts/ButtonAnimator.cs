@@ -38,49 +38,50 @@ namespace JAS.MediDeci
         {
             if (button.interactable && !isAnimating && animWrapper != null)
             {
-                StartCoroutine(DoPopAnimation());
+                GlobalCoroutineRunner.Instance.RunCoroutine(DoPopAnimation(animWrapper, text, animScale, animDuration));
             }
         }
 
-        private IEnumerator DoPopAnimation()
+        private IEnumerator DoPopAnimation(RectTransform wrapper, TextMeshProUGUI label, float scale, float duration)
         {
             isAnimating = true;
 
-            Vector3 targetScale = originalScale * animScale;
+            Vector3 original = wrapper.localScale;
+            Vector3 target = original * scale;
             float t = 0f;
 
             // Scale up
-            while (t < animDuration)
+            while (t < duration)
             {
                 t += Time.unscaledDeltaTime;
-                float p = t / animDuration;
-                animWrapper.localScale = Vector3.Lerp(originalScale, targetScale, p);
+                float p = t / duration;
+                wrapper.localScale = Vector3.Lerp(original, target, p);
 
-                if (text != null)
-                    text.rectTransform.localScale = Vector3.Lerp(originalScale, targetScale, p);
+                if (label != null)
+                    label.rectTransform.localScale = Vector3.Lerp(original, target, p);
 
                 yield return null;
             }
 
             t = 0f;
 
-            // Scale back
-            while (t < animDuration)
+            // Scale down
+            while (t < duration)
             {
                 t += Time.unscaledDeltaTime;
-                float p = t / animDuration;
-                animWrapper.localScale = Vector3.Lerp(targetScale, originalScale, p);
+                float p = t / duration;
+                wrapper.localScale = Vector3.Lerp(target, original, p);
 
-                if (text != null)
-                    text.rectTransform.localScale = Vector3.Lerp(targetScale, originalScale, p);
+                if (label != null)
+                    label.rectTransform.localScale = Vector3.Lerp(target, original, p);
 
                 yield return null;
             }
 
-            animWrapper.localScale = originalScale;
+            wrapper.localScale = original;
 
-            if (text != null)
-                text.rectTransform.localScale = originalScale;
+            if (label != null)
+                label.rectTransform.localScale = original;
 
             isAnimating = false;
         }

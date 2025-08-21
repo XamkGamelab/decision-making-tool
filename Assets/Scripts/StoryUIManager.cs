@@ -44,8 +44,13 @@ namespace JAS.MediDeci
         private const float ButtonPopDuration = 0.2f;
         private const float ButtonStagger = 0.05f;
 
+        public AudioClip clip;
+        private AudioSource audioSource;
+
         private void Start()
         {
+            audioSource = GetComponent<AudioSource>();
+
             _feedbackOriginalPos = feedbackPanel.GetComponent<RectTransform>().anchoredPosition;
             _returnToMenuOriginalPos = returnToMenuRect.anchoredPosition;
 
@@ -190,6 +195,7 @@ namespace JAS.MediDeci
                 if (option == null || !option.isVisible) continue;
 
                 StartCoroutine(AnimateButtonPop(optionButtons[i].gameObject, i * ButtonStagger));
+                audioSource.PlayOneShot(clip);
             }
         }
 
@@ -260,6 +266,7 @@ namespace JAS.MediDeci
                 if (option == null || !option.isVisible) continue;
 
                 StartCoroutine(AnimateButtonPop(optionButtons[i].gameObject, i * ButtonStagger));
+                audioSource.PlayOneShot(clip);
             }
         }
 
