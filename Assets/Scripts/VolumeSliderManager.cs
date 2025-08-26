@@ -34,14 +34,21 @@ namespace JAS.MediDeci
             soundSlider.maxValue = maxVolume;
 
             // Load saved values
-            musicSlider.value = PlayerPrefs.GetInt("MusicVolume", 10);
-            soundSlider.value = PlayerPrefs.GetInt("SoundVolume", 10);
+            int savedMusic = PlayerPrefs.GetInt("MusicVolume", 10);
+            int savedSound = PlayerPrefs.GetInt("SoundVolume", 10);
 
-            musicLabel.text = PlayerPrefs.GetInt("MusicVolume").ToString();
-            soundLabel.text = PlayerPrefs.GetInt("SoundVolume").ToString();
+            savedMusic = Mathf.Clamp(savedMusic, minVolume, maxVolume);
+            savedSound = Mathf.Clamp(savedSound, minVolume, maxVolume);
 
-            ApplyVolume(Mathf.RoundToInt(musicSlider.value), musicParameter);
-            ApplyVolume(Mathf.RoundToInt(soundSlider.value), soundParameter);
+            musicSlider.value = savedMusic;
+            soundSlider.value = savedSound;
+
+            musicLabel.text = savedMusic.ToString();
+            soundLabel.text = savedSound.ToString();
+
+            // Apply saved volume immediately
+            ApplyVolume(savedMusic, musicParameter);
+            ApplyVolume(savedSound, soundParameter);
 
             // Add listeners
             musicSlider.onValueChanged.AddListener((value) =>
@@ -58,12 +65,18 @@ namespace JAS.MediDeci
                 ApplyVolume(intValue, soundParameter);
                 UpdateLabel(soundLabel, intValue);
                 PlayerPrefs.SetInt("SoundVolume", intValue);
+
+                // Also immediately update AudioManager output
+                if (AudioManager.Instance != null && AudioManager.Instance.soundMixerGroup != null)
+                {
+                    float dB = (intValue == 0) ? -80f : Mathf.Lerp(-30f, 0f, intValue / 10f);
+                    AudioManager.Instance.soundMixerGroup.audioMixer.SetFloat("SoundVolume", dB);
+                }
             });
         }
 
         private void ApplyVolume(int sliderValue, string parameter)
         {
-            // Convert 0-10 scale to decibels (-80 dB = mute, 0 dB = full)
             float dB = (sliderValue == 0) ? -80f : Mathf.Lerp(-30f, 0f, sliderValue / 10f);
             audioMixer.SetFloat(parameter, dB);
         }
