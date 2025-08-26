@@ -111,6 +111,8 @@ namespace JAS.MediDeci
 
                 button.onClick.AddListener(() =>
                 {
+                    SetAllButtonsInteractable(false);
+
                     if (AudioManager.Instance != null)
                         AudioManager.Instance.PlayAudioClip(AudioManager.Instance.clickButtonSound);
 
