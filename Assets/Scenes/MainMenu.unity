@@ -421,7 +421,6 @@ GameObject:
   - component: {fileID: 71484536}
   - component: {fileID: 71484539}
   - component: {fileID: 71484537}
-  - component: {fileID: 71484540}
   - component: {fileID: 71484541}
   m_Layer: 5
   m_Name: Button
@@ -515,22 +514,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71484535}
   m_CullTransparentMesh: 1
---- !u!114 &71484540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71484535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186f445596435b7458f37df533fed649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animWrapper: {fileID: 1256805599}
-  text: {fileID: 1799419632}
-  animScale: 0.9
-  animDuration: 0.08
 --- !u!114 &71484541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2835,7 +2818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &903580113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4313,7 +4296,7 @@ GameObject:
   - component: {fileID: 1544874678}
   - component: {fileID: 1544874677}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4630,7 +4613,7 @@ RectTransform:
   m_Father: {fileID: 1105828082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4705,7 +4688,7 @@ RectTransform:
   m_Father: {fileID: 218804012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5387,8 +5370,8 @@ MonoBehaviour:
   sliderValueKey: SavedYear
   inputTextKey: SavedName
   panel: {fileID: 903580112}
-  button: {fileID: 1544874677}
-  exitButton: {fileID: 1824019328}
+  saveButton: {fileID: 1544874677}
+  exitButton: {fileID: 1824019330}
 --- !u!1 &1857858428
 GameObject:
   m_ObjectHideFlags: 0
