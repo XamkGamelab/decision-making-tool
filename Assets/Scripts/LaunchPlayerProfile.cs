@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace JAS.MediDeci
 {
@@ -16,6 +17,8 @@ namespace JAS.MediDeci
 
         private void Start()
         {
+
+
             if (!PlayerPrefs.HasKey(sliderValueKey) &&
                 !PlayerPrefs.HasKey(inputTextKey))
             {

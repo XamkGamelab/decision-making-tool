@@ -522,7 +522,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71484535}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 186f445596435b7458f37df533fed649, type: 3}
   m_Name: 
@@ -5338,6 +5338,7 @@ GameObject:
   - component: {fileID: 1827268370}
   - component: {fileID: 1827268371}
   - component: {fileID: 1827268372}
+  - component: {fileID: 1827268373}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -5387,8 +5388,20 @@ MonoBehaviour:
   sliderValueKey: SavedYear
   inputTextKey: SavedName
   panel: {fileID: 903580112}
-  button: {fileID: 1544874677}
-  exitButton: {fileID: 1824019328}
+  saveButton: {fileID: 0}
+  exitButton: {fileID: 1824019330}
+--- !u!114 &1827268373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827268369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5254a9a28bbd94caa6ab03808b513d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1857858428
 GameObject:
   m_ObjectHideFlags: 0
