@@ -2252,6 +2252,34 @@ MonoBehaviour:
     m_Y: 191
     m_Width: 13
     m_Height: 41
+  - m_X: 571
+    m_Y: 275
+    m_Width: 87
+    m_Height: 748
+  - m_X: 446
+    m_Y: 218
+    m_Width: 3
+    m_Height: 37
+  - m_X: 359
+    m_Y: 338
+    m_Width: 664
+    m_Height: 685
+  - m_X: 359
+    m_Y: 302
+    m_Width: 87
+    m_Height: 721
+  - m_X: 798
+    m_Y: 150
+    m_Width: 2
+    m_Height: 26
+  - m_X: 922
+    m_Y: 298
+    m_Width: 101
+    m_Height: 725
+  - m_X: 507
+    m_Y: 335
+    m_Width: 516
+    m_Height: 688
   - m_X: 724
     m_Y: 232
     m_Width: 18

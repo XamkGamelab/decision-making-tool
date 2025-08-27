@@ -7,7 +7,7 @@ using TMPro;
 namespace JAS.MediDeci
 {
     [RequireComponent(typeof(Button))]
-    public class ButtonPopAnimator : MonoBehaviour, IPointerClickHandler
+    public class ButtonAnimator : MonoBehaviour, IPointerClickHandler
     {
         [Header("Visuals")]
         public RectTransform animWrapper;
