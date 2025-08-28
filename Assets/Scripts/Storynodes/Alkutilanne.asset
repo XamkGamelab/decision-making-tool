@@ -14,14 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeId: Alkutilanne
   questionText: "Mik\xE4 on todenn\xE4k\xF6isin seuraava tilanne?"
-  nodeImage: {fileID: -4586572322597978023, guid: f1ece12de286a7a409f9ea19f0e76e8c, type: 3}
+  nodeImage: {fileID: 0}
   options:
   - optionText: 752B - Myrkytys
     nextNode: {fileID: 11400000, guid: d5d7e7074e351d54d9da0ebb5afa9c51, type: 2}
     isVisible: 1
     isLoggable: 1
-  - optionText: 700A - Eloton
-    nextNode: {fileID: 11400000, guid: 222f839e2c74c8942aa2f94c61da4c4c, type: 2}
-    isVisible: 0
-    isLoggable: 0
   showReturnToMenu: 0
